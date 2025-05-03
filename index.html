@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <script>
+  
+  
     
   let paymentsClient = null;
 
@@ -31,8 +33,8 @@
           },
         }],
         transactionInfo: {
-          totalPriceStatus: 'FINAL',
-          totalPrice: '9.99',  // Replace with your dynamic price
+          totalbuynowStatus: 'FINAL',
+          totalbuynow: '9.99',  // Replace with your dynamic buynow
           currencyCode: 'INR',
         },
       };
@@ -52,674 +54,1034 @@
       // Send paymentData to your server for further processing
       alert('Payment Success!');
     }
+  <!-- In the <head> -->
+
+  
+  
   
   </script>
    <script src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
   <title>NSDI Choco Cravings</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #4e342e;
-      background: url('/images/24.jpeg') no-repeat center center fixed;
-      background-size: cover;
-    }
+    /* Hero Section */
+		.hero-section {
+		  position: relative;
+		  height: 100vh;
+		  background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  text-align: center;
+		  overflow: hidden;
+		  color: #ffffff;
+		}
 
-    .overlay {
-      background-color: rgba(255, 255, 255, 0.92);
-      min-height: 100vh;
-    }
+		.hero-content {
+		  z-index: 2;
+		  animation: fadeInUp 1s ease-in-out;
+		}
 
-    header {
-      position: relative;
-      height: 500px;
-      overflow: hidden;
-    }
+		.hero-title {
+		  font-size: 4rem;
+		  font-weight: 900;
+		  margin-bottom: 0.5rem;
+		  background: linear-gradient(90deg, #302b63, #e52e71);
+		  -webkit-background-clip: text;
+		  -webkit-text-fill-color: transparent;
+		}
 
-    .logo {
-		position: absolute;
-		top: 50px;
-		right: 105px;
-		width: 250px;
-		height: auto;
-		z-index: 10;
-    }
+		
+		.hero-btn {
+		  padding: 0.9rem 2rem;
+		  font-size: 1rem;
+		  font-weight: 500;
+		  border-radius: 999px;
+		  background: #ff8a00;
+		  color: #fff;
+		  text-decoration: none;
+		  box-shadow: 0 10px 20px rgba(255, 138, 0, 0.3);
+		  transition: all 0.3s ease;
+		}
 
-    .carousel {
-      display: flex;
-      width: 300%;
-      
-    }
+		.hero-btn:hover {
+		  background: #e52e71;
+		  box-shadow: 0 12px 24px rgba(229, 46, 113, 0.4);
+		}
 
-    .carousel img {
-      width: 34%;
-      height: 500px;
-      object-fit: cover;
-    }
+		/* Optional Glow Background */
+		.hero-background-glow {
+		  position: absolute;
+		  top: 0;
+		  left: 50%;
+		  width: 800px;
+		  height: 800px;
+		  background: radial-gradient(circle, rgba(255, 138, 0, 0.3), transparent 70%);
+		  transform: translateX(-50%);
+		  z-index: 1;
+		  filter: blur(100px);
+		}
 
-    @keyframes slide {
-      0% { transform: translateX(0); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0); }
-    }
+		/* Animation */
+		@keyframes fadeInUp {
+		  from {
+			opacity: 0;
+			transform: translateY(30px);
+		  }
+		  to {
+			opacity: 1;
+			transform: translateY(0);
+		  }
+		}
+		
+		/* Background image overlay */
+		.hero-image-overlay {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  background: url('images/hero-bg-texture.jpg') center/cover no-repeat;
+		  opacity: 0.08;
+		  z-index: 0;
+		}
 
-    header h1 {
-        position: absolute;
-    top: 50%;
-    left: 33%;
-    color: #FFFFFD;
-    font-size: 5rem;
-    text-shadow: 2px 2px 8px #0c0c0c;
-    z-index: 5;
-}
-    }
+		/* Carousel Container */
+		.carousel-container {
+		  position: absolute;
+		  bottom: 5%;
+		  left: 50%;
+		  transform: translateX(-50%);
+		  width: 90%;
+		  max-width: 800px;
+		  overflow: hidden;
+		  z-index: 2;
+		  animation: slideUpFade 1.5s ease-in-out;
+		}
 
-    header p {
-      position: absolute;
-      top: 60%;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #ffc107;
-      font-size: 1.2rem;
-      font-weight: bold;
-      z-index: 5;
-    }
+		/* Carousel Wrapper */
+		.carousel-wrapper {
+		  display: flex;
+		  justify-content: center;
+		  gap: 20px;
+		  transition: transform 0.5s ease-in-out;
+		}
 
-    section {
-      padding: 2rem;
-      text-align: center;
-    }
+		.carousel-slide {
+		  width: 120px;
+		  height: 120px;
+		  border-radius: 16px;
+		  object-fit: cover;
+		  opacity: 0.5;
+		  transform: scale(0.9);
+		  transition: all 0.5s ease;
+		}
 
-	section abt{
-      padding: 2rem;
-      text-align: left;
-    }
+		.carousel-slide.active {
+		  opacity: 1;
+		  transform: scale(1.15);
+		  box-shadow: 0 8px 24px rgba(255, 138, 0, 0.4);
+		}
+
+		/* Animation Keyframe */
+		@keyframes slideUpFade {
+		  from {
+			opacity: 0;
+			transform: translate(-50%, 30px);
+		  }
+		  to {
+			opacity: 1;
+			transform: translate(-50%, 0);
+		  }
+		}
+		* Animation Keyframe */
+		@keyframes slideUpFade {
+		  from {
+			opacity: 0;
+			transform: translate(-50%, 30px);
+		  }
+		  to {
+			opacity: 1;
+			transform: translate(-50%, 0);
+		  }
+		}
+		
+		 /* Full-page Hero Section */
+.hero-section-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;  /* Full height of the viewport */
+  padding: 0 8%;  /* Add horizontal padding */
+  color: linear-gradient(90deg, #302b63, #e52e71);
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(270deg, 
+    #f1c6b7,   /* Soft Peach */
+    #f9e3d1,   /* Light Apricot */
+    #c8f2d3,   /* Mint Green */
+    #d6e8ff,   /* Light Sky Blue */
+    #f8e0d3,   /* Light Pink */
+    #e3c9ff,   /* Lavender */
+    #b3e6ff,   /* Light Blue */
+    #f6ffb3,    /* Light Lemon */
+	#fbc962,
+    #e1cbfd,
+	#98f4fd
 	
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #3e2723;
-    }
+  );
+  background-size: 800% 800%;
+  animation: gradientShift 15s ease infinite;
+}
 
-    .product-grid {
+/* Smooth Gradient Animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 50%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Left Section - Title & Subtitle */
+.hero-left {
+  flex: 1;
+  min-width: 280px;
+  padding-right: 2rem;
+  z-index: 1; /* Ensure it's above the background */
+}
+
+/* Hero Title */
+.hero-title {
+  font-size: 6rem;  /* Increased size for more impact */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  transition: color 0.3s ease, font-size 0.3s ease;
+  color: linear-gradient(90deg, #302b63, #e52e71);
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+
+
+/* Hero Button */
+.hero-btn {
+  padding: 0.8rem 1.5rem;
+  background: #ff7b29;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #ff5500;
+  transform: scale(1.1);
+}
+
+.product-btn {
+  display: inline-block; /* Makes <a> behave like a button */
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 450;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 0.6rem 1.3rem;
+  margin-top: 0.8rem;
+  color: white;
+  background: linear-gradient(135deg, #ff7b29, #ff5722);
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.product-btn:hover {
+  background: #ff5500;
+ }
+
+
+/* Right Section - Product Cards */
+.hero-right {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  z-index: 1; /* Ensure it's above the background */
+}
+
+.hero-card-stack {
+  position: relative;
+  width: 260px;
+  height: 340px;
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Product Cards */
+.card-card {
+  position: absolute;
+  width:500px;
+  height: 500px;
+  background: #1c1c2c;
+  border-radius: 10px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.8s ease-in-out, z-index 0.5s, opacity 0.5s, box-shadow 0.3s ease;
+  text-align: center;
+  padding: 0rem;
+  opacity: 0;
+}
+
+.card-card img {
+  width: 100%;
+  height: 500px;           /* Increased from ~200px */
+  object-fit: cover;
+  border-radius: 10px;     /* Slightly more rounded corners */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+/* Optional: Add image zoom on hover */
+.card-card:hover img {
+  transform: scale(1.05);
+}
+
+.card-card h3 {
+  color: white;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for product cards */
+.card-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card-card:hover h3 {
+  color: #ff7b29;
+  transform: scale(1.1);
+}
+
+		@keyframes gradientShift {
+		  0% { background-position: 0% 50%; }
+		  25% { background-position: 50% 50%; }
+		  50% { background-position: 100% 50%; }
+		  75% { background-position: 50% 50%; }
+		  100% { background-position: 0% 50%; }
+		}
+		
+		.hero-bg-overlay {
+		  position: absolute;
+		  top: 0; left: 0; right: 0; bottom: 0;
+		  background: rgba(0, 0, 0, 0.4);
+		  z-index: 0;
+		  pointer-events: none;
+		  border-radius: inherit;
+		}
+		
+		
+		
+		
+	.product-container {
+      padding: 5% 8%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
     }
 
-    .product {
-      background-color: rgba(255,255,255,0.95);
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    .spotlight-card-module--link--XmveN {
+      display: block;
+      background: white;
+      border-radius: 18px;
       overflow: hidden;
-      transition: transform 0.3s ease-in-out;
-      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
     }
 
-    .product:hover {
+    .spotlight-card-module--link--XmveN:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .spotlight-card-module--image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .spotlight-card-module--link--XmveN:hover .spotlight-card-module--image {
       transform: scale(1.05);
     }
 
-    .product img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
+    .spotlight-card-module--content {
+      padding: 1.2rem;
     }
 
-    .product h3 {
-      margin: 0.5rem 0;
+    .spotlight-card-module--title {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 0 0 0.5rem 0;
     }
 
-    .product p {
-      font-size: 0.9rem;
-      color: #6d4c41;
-      padding: 0 1rem;
-    }
-
-    .order-btn {
-		  display: inline-block;
-		  background-color: #6a1b9a; /* Rich purple for a premium feel */
-		  color: #fff;
-		  font-weight: bold;
-		  padding: 8px 16px;
-		  border-radius: 8px;
-		  text-decoration: none;
-		  font-size: 16px;
-		  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.3);
-		  transition: background-color 0.3s ease, transform 0.2s ease;
-		}
-
-		.order-btn:hover {
-		  background-color: #8e24aa;
-		  transform: translateY(-2px);
-		}
-
-		.order-btn:active {
-		  transform: translateY(0);
-		  box-shadow: 0 2px 6px rgba(106, 27, 154, 0.2);
-		}
-
-	 .successModal {
-		  display: none;
-		  background-color: #4CAF50;
-		  color: white;
-		  padding: 15px;
-		  margin: 10px;
-		  border-radius: 8px;
-		  text-align: center;
-		}
-		
-			.form-group {
-		  margin-bottom: 1rem;
-		}
-		.form-group input,
-		.form-group select,
-		.form-group textarea {
-		  width: 100%;
-		  padding: 0.9rem;
-		  border: 1px solid #ccc;
-		  border-radius: 10px;
-		  font-size: 1rem;
-		  outline: none;
-		  transition: border 0.2s ease;
-		}
-		.form-group input:focus,
-		.form-group select:focus,
-		.form-group textarea:focus {
-		  border-color: #6A1B9A;
-		}
-	.floating-btn-group {
-		  position: fixed;
-		  bottom: 20px;
-		  right: 20px;
-		  z-index: 1000;
-		  display: none;
-		  opacity: 0;
-		  transition: opacity 0.4s ease;
-		  display: flex;
-		  flex-direction: column;
-		  gap: 10px;
-		}
-		.floating-btn-group.show {
-		  display: flex;
-		  opacity: 1;
-		}
-		.floating-order-btn,
-		.floating-whatsapp-btn {
-		  background: #6A1B9A;
-		  color: white;
-		  padding: 0.7rem 1rem;
-		  border-radius: 30px;
-		  text-align: center;
-		  font-weight: bold;
-		  font-size: 1rem;
-		  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-		  text-decoration: none;
-		}
-		.floating-order-btn:hover,
-		.floating-whatsapp-btn:hover {
-		  background: #8E24AA;
-		}
-
-		/* Navbar Styles */
-		.navbar {
-		  position: fixed; /* Keep navbar at the top */
-		  top: 0;
-		  left: 0;
-		  width: 100%;
-		  background: rgba(255, 255, 255, 0.8);
-		  padding: 1rem 2rem;
-		  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-		  backdrop-filter: blur(8px);
-		  z-index: 999;
-		  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-		}
-
-		.navbar.scrolled {
-		  background-color: rgba(255, 255, 255, 1); /* Solid background when scrolled */
-		  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow when scrolled */
-		}
-
-		.navbar .container {
-		  display: flex;
-		  justify-content: space-between;
-		  align-items: center;
-		  max-width: 1200px;
-		  margin: 0 auto;
-		}
-
-		.navbar nav {
-		  display: flex;
-		  align-items: center;
-		}
-
-		.navbar nav a {
-		  text-decoration: none;
-		  color: #4e342e;
-		  font-size: 1rem;
-		  font-weight: 500;
-		  margin-left: 2rem;
-		  transition: color 0.3s ease, transform 0.3s ease;
-		}
-
-		.navbar nav a:hover {
-		  color: #8e24aa;
-		  transform: translateY(-3px);
-		}
-
-		.nav-logo {
-		  height: 50px;
-		  transition: transform 0.3s ease;
-		}
-
-		.nav-logo:hover {
-		  transform: scale(1.1); /* Bounce effect on logo hover */
-		}
-
-		.hamburger {
-		  display: none;
-		  font-size: 2rem;
-		  cursor: pointer;
-		}
-
-		@media (max-width: 768px) {
-		  .navbar nav {
-			display: none; /* Hide menu by default */
-			width: 100%;
-			flex-direction: column;
-			align-items: center;
-			margin-top: 1rem;
-		  }
-
-		  .navbar nav a {
-			margin: 1rem 0;
-		  }
-
-		  .hamburger {
-			display: block; /* Show hamburger on mobile */
-			cursor: pointer;
-		  }
-
-		  .navbar nav.active {
-			display: flex; /* Show menu when active */
-		  }
-		}
-
-		/* Navbar color change on scroll */
-		.navbar.scrolled {
-			background-color: rgba(255, 255, 255, 0.9); /* Add solid color when scrolled */
-		}
-		/* Logo bounce on hover */
-		.nav-logo {
-		  height: 50px;
-		  transition: transform 0.3s ease;
-		}
-
-		.nav-logo:hover {
-		  transform: scale(1.1) rotate(5deg);
-		}
-
-		
-		.spinner-overlay {
-		  position: fixed;
-		  top: 0;
-		  left: 0;
-		  width: 100%;
-		  height: 100%;
-		  background: rgba(255, 255, 255, 0.6);
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		  z-index: 2000;
-		}
-		.spinner {
-		  width: 50px;
-		  height: 50px;
-		  border: 6px solid #ccc;
-		  border-top: 6px solid #6A1B9A;
-		  border-radius: 50%;
-		  animation: spin 1s linear infinite;
-		}
-		@keyframes spin {
-		  to { transform: rotate(360deg); }
-		}
-		
-
-	/* Main title styles (NSDI Choco Cravings) */
-		.main-title {
-		  font-size: 4rem;
-			font-weight: 700;
-			background: linear-gradient(45deg, #ef1f07, #eb4d1d);
-			-webkit-background-clip: text;
-			color: transparent;
-			text-align: center;
-			margin: 0;
-			letter-spacing: 2px;
-			animation: fadeIn 1.5s ease-out;
-			text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-		}
-
-		/* Sub-title styles (Brownie Treat) */
-		.sub-title {
-		  font-size: 3rem;
-		  font-weight: 500;
-		  color: #FFEB3B;  /* Light yellow/gold for contrast */
-		  text-align: center;
-		  margin-top: -20.5rem;
-		  letter-spacing: 1px;
-		  opacity: 0;
-		  z-index: 2;
-		  animation: fadeIn 2s ease-out 0.5s forwards; /* Delayed fade-in */
-		}
-
-		/* Fade-in effect for text */
-		@keyframes fadeIn {
-		  0% {
-			opacity: 0;
-		  }
-		  100% {
-			opacity: 1;
-		  }
-		}
-
-		/* Hover effect for the main title */
-		.main-title:hover {
-		  transform: scale(1.1);
-		  transition: transform 0.3s ease, text-shadow 0.3s ease;
-		  text-shadow: 0 0 15px rgba(0, 0, 0, 0.6); /* Stronger glow effect on hover */
-		}
-
-		/* Hover effect for the sub-title */
-		.sub-title:hover {
-		  color: #8E24AA; /* Change color on hover */
-		  cursor: pointer;
-		  transition: color 0.3s ease;
-		}
-
-		
-		#title-section {
-		  display: flex;
-		  flex-direction: column;
-		  justify-content: center;
-		  align-items: center;
-		  height: 100vh; /* Full screen height */
-		  background-color: #f4f4f4; /* Light background to contrast with the titles */
-		}
-
-
-
-	.background {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100vh; /* Adjust height */
-		position: relative;
-		background-image: url('your-image-url');
-		background-size: cover;
-		background-position: center;
-	}
-
-	.background:after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
-		z-index: 1;
-	}
-
-    footer {
-      background-color: rgba(62, 39, 35, 0.95);
-      color: white;
-      text-align: center;
-      padding: 1rem;
+    .spotlight-card-module--desc {
+      font-size: 0.95rem;
+      color: #555;
     }
 	
-	.currency {
-		font-size: 1.2rem;
-		vertical-align: top;
-		margin-right: 2px;
-	}
-	.price-box {
-		font-size: 1.8rem;
-		color: #d1495b;
-		font-weight: 700;
-		/* margin-bottom: 15px; */
-		/* background: #fff0f0; */
-		padding: 10px 20px;
-		/* border-radius: 12px; */
-		/* display: inline-block; */
-		/* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05); */
-	}
-	.product-card {
-		text-align: center;
-		/* padding: 20px; */
-		border-radius: 16px;
-		/* background: #fff5f5; */
-		/* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
-		max-width: -1px;
-		margin: auto;
-		font-family: 'Poppins', sans-serif;
+	.price {
+	  margin-top: 0.6rem;
+	  font-size: 1.1rem;
+	  font-weight: bold;
+	  color: #302b63;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
 	}
 	
-	.goooglePayButtonContainer {
-		width: 100%;
-		max-width: 400px;
-		height: 50px;
-		background-color: #4285F4;  /* Google Blue */
-		border-radius: 25px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: white;
-		font-size: 18px;
-		font-weight: 600;
-		cursor: pointer;
-		box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-		transition: all 0.3s ease-in-out;
-	  }
-	  
-	 .googlePayButtonContainer {
-      text-align: center;
-      padding-top: 20px;
-    }
-    .gpay-button {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg'); /* Your custom Google Pay logo URL */
-      background-size: contain;
-      background-repeat: no-repeat;
-      width: 200px;  /* Adjust size as needed */
-      height: 50px;  /* Adjust size as needed */
-      cursor: pointer;
-    }
+	.about-section {
+	  background: linear-gradient(135deg, #1e1e2f, #302b63);
+	  color: #fff;
+	  padding: 80px 20px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	}
+
+	.about-content {
+	  max-width: 4000px;
+	  text-align: center;
+	  background-color: rgba(255, 255, 255, 0.05);
+	  padding: 40px;
+	  border-radius: 24px;
+	  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+	  backdrop-filter: blur(10px);
+	  transition: transform 0.3s ease;
+	}
+
+	.about-content:hover {
+	  transform: scale(1.02);
+	}
+
+	.about-content h2 {
+	  font-size: 2.5rem;
+	  margin-bottom: 20px;
+	  font-weight: 700;
+	  letter-spacing: 1px;
+	}
+
+	.about-content p {
+	  font-size: 1.125rem;
+	  line-height: 1.8;
+	  margin-bottom: 20px;
+	}
+	
+	.order-section {
+  background: linear-gradient(145deg, #f3e7e9, #e3eeff);
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-container {
+  width: 100%;
+  max-width: 550px;
+  margin: auto;
+}
+
+.order-form-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.order-form-card:hover {
+  transform: translateY(-5px);
+}
+
+.order-form-card h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #6A1B9A;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.8rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 95%;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+  background: #f9f9f9;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #6A1B9A;
+}
+
+.form-group label {
+  position: absolute;
+  top: -12px;
+  left: 15px;
+  background: white;
+  padding: 0 6px;
+  font-size: 0.8rem;
+  color: #6A1B9A;
+  pointer-events: none;
+}
+
+.submit-btn {
+  background: #6A1B9A;
+  color: #fff;
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #4e0b77;
+}
+
+.gpay-button-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #6A1B9A;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+footer.footer {
+  background: linear-gradient(to right, #4E342E, #6A1B9A);
+  color: white;
+  padding: 60px 20px 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section h3, .footer-section h4 {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #fff;
+  display: inline-block;
+}
+
+.footer-section p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.social-icons a {
+  margin-right: 10px;
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #25D366;
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+
+.inline-success-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  padding: 30px 20px;
+  max-width: 400px;
+  width: 90%;
+  display: none;
+  z-index: 999;
+  animation: modalIn 0.3s ease-out forwards;
+}
+
+.inline-success-modal h2 {
+  color: #6A1B9A;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.inline-success-modal p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.inline-success-modal .close-btn {
+  background: #6A1B9A;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.inline-success-modal .close-btn:hover {
+  background-color: #4e0b77;
+}
+
+@keyframes modalIn {
+  from {
+    transform: translate(-50%, -60%) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+.highlighted-section {
+  background: #0e0e0e;
+  padding: 4rem 0;
+  color: #fff;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 2rem 2rem;
+  color: #6A1B9A;
+}
+
+.scroll-gallery {
+  display: flex;
+  gap: 1.5rem;
+  padding-left: 2rem;
+  animation: scroll-left 40s linear infinite;
+  width: max-content;
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  width: 380px;
+  height: 300px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Auto scroll keyframes */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Optional: pause scroll on hover */
+.scroll-gallery:hover {
+  animation-play-state: paused;
+}
+
+
+
 
 	
-	
-	 /* 🔻 Mobile Styles */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-        top: 40%;
-      }
-
-      header p {
-        font-size: 1rem;
-        top: 52%;
-        padding: 0 1rem;
-        text-align: center;
-      }
-
-      .logo {
-        width: 100px;
-        top: 10px;
-        right: 10px;
-      }
-
-      .product-grid {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-      }
-
-      .product img {
-        height: 200px;
-      }
-
-      .carousel img {
-        height: 300px;
-      }
-
-      section h2 {
-        font-size: 1.5rem;
-      }
-
-      .btn {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
-      }
-	  .whatsapp-float {
-		position: fixed;
-		bottom: 20px;
-		right: 20px;
-		z-index: 1000;
-	 }
-
-	.modal {
-		  display: none;
-		  position: fixed;
-		  z-index: 2000;
-		  left: 0;
-		  top: 0;
-		  width: 100%;
-		  height: 100%;
-		  background-color: rgba(0, 0, 0, 0.5);
-		}
-
-		.modal-content {
-		  background-color: white;
-		  margin: 15% auto;
-		  padding: 2rem;
-		  border-radius: 8px;
-		  width: 90%;
-		  max-width: 400px;
-		  text-align: center;
-		  font-size: 1.2rem;
-		  color: #4CAF50;
-		  animation: fadeIn 0.4s;
-		}
-
-		@keyframes fadeIn {
-		  from {opacity: 0;}
-		  to {opacity: 1;}
-		}
-		
-
-
-      footer {
-        font-size: 0.9rem;
-        padding: 1rem;
-      }
-    }
   </style>
- 
+ <!-- In the <head> -->
+
+</script>
+
 </head>
 <body>
-	
+	<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+		<!-- Before </body> -->
+	<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+	<script>
+	  AOS.init({
+		duration: 1000, // animation duration
+		once: true      // animate only once
+	  });
+	</script>
 
   <div class="overlay">
 	 <!-- Hero Section -->
-    <header>
-		<div class="navbar">
-			<div class="container">
-				<img src="/images/Logo.jpg" alt="NSDI Choco Cravings Logo" class="nav-logo" />
-				<nav id="navLinks">
-				  <!-- <a href="#home">Home</a>
-				  <a href="#products">Products</a>
-				  <a href="#contact">Contact</a> -->
-				  <a href="#order">Order Details</a>
-				  
-				</nav>
-				<div class="hamburger" id="hamburgerMenu" onclick="toggleMenu()">
-				  ☰
-				</div>
+
+		<header class="hero-section-split" id="home">
+		
+		 
+		  <div class="hero-left" data-aos="fade-right">
+		   <img src="/images/trans_logo.png"  alt="NSDI Logo" style="max-height: 90px;margin-bottom: 8.5rem;" />
+			<h1 class="hero-title">Indulge Guilt-Free</h1>
+			<p class="hero-subtitle">Premium Healthy Brownies handcrafted by NSDI Choco Cravings</p>
+			<a href="#order" class="hero-btn">Order Now</a>
+		  </div>
+
+		  <div class="hero-right" data-aos="fade-left">
+			<div class="hero-card-stack">
+			<div class="card-card" style="z-index: 6;">
+				<img src="/images/hero18.jpeg" alt="Choco Fudge">
+			  </div>
+			<div class="card-card" style="z-index: 5;">
+				<img src="/images/cgpt_hero5.jpg" alt="Choco Fudge">
+			  </div>
+			<div class="card-card" style="z-index: 4;">
+				<img src="/images/hero5.jpeg" alt="Choco Fudge">
+			  </div>
+			  <div class="card-card" style="z-index: 3;">
+				<img src="/images/hero3.jpeg" alt="Choco Fudge">
+			  </div>
+			  <div class="card-card" style="z-index: 2;">
+				<img src="/images/hero2.jpeg" alt="Walnut Delight">
+				  </div>
+			  <div class="card-card" style="z-index: 1;">
+				<img src="/images/hero1.jpeg" alt="Vegan Bliss">
+			  </div>
 			</div>
 		  </div>
-      <div class="carousel">
-        
-        <img class="background" src="/images/20.jpeg" alt="Brownies 3">
-		
-		<!--
-		<img src="/images/11.jpeg" alt="Brownies 1">
-        <img src="/images/16.jpeg" alt="Brownies 2">
-		<img src="/images/5.jpeg" alt="Brownies 3">		
-		<img src="/images/3.jpeg" alt="Brownies 3">-->
-      </div>
+		</header>
 
-      <img src="/images/Logo.jpg" alt="NSDI Choco Cravings Logo" class="logo">
-      <section id="title-section">
-		  <h1 class="main-title">NSDI Choco Cravings</h1>
-	  </section>
+		<div class="product-container">
+			<a href="#order" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product1.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Wheat Banana Muffin - Mini Box</h3>
+				<p class="spotlight-card-module--desc">Moist, sweet, and packed with banana muffin is a delicious treat to start your day!</p>
+				<span class="price">₹90</span> 
+				<div class="product-btn">Buy Now</div>
+			  </div>
+			</a>
+			<a href="#order" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product2.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Ragi Cupcake with Chocolate Frosting - Mini Box</h3>
+				<p class="spotlight-card-module--desc">Indulge in our chocolate cube cake: rich, moist, and intensely chocolatey.</p>
+				<span class="price">₹90</span>
+				<div class="product-btn">Buy Now</div>
+			</div>
+			</a>
 
-	</header>
+			<a href="#order" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product3.jpeg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Ragi Cupcake - Mini Box</h3>
+				<p class="spotlight-card-module--desc">Ragi goodness in a cupcake! Moist, nutritious, and subtly nutty, our ragi cupcakes are a wholesome delight.</p>
+				<span class="price">₹90</span>
+				<div class="product-btn">Buy Now</div>
+				</div>
+			</a>
 
-    <!-- Product Grid Section -->
-    <section class="product-grid">
-      <div class="product">
-        <img src="/images/7.jpeg" alt="Almond Fudge">
-        <h3>Almond Fudge</h3>
-        <p>Rich, nutty, and gluten-free. A perfect balance of health and indulgence.</p>
-		<div class="product-card">
-			<div class="price-box">
-				<span class="currency">₹</span><span class="amount">450</span>
-		  </div>
-		</div>
-        <a href="#" class="order-btn" onclick="scrollToOrderForm(event)">Buy Now</a>
-      </div>
-      <div class="product">
-        <img src="/images/25.jpeg" alt="Chocolate Bliss">
-        <h3>Chocolate Bliss</h3>
-        <p>Pure cocoa goodness, less sugar. A decadent treat for any time of day.</p>
-		<div class="product-card">
-			<div class="price-box">
-				<span class="currency">₹</span><span class="amount">350</span>
-		  </div>
-		</div>
-        <a href="#" class="order-btn" onclick="scrollToOrderForm(event)">Buy Now</a>
-      </div>
-	  
-      <!-- Add your 10 more products here following the same structure -->
-    </section>
+			<a href="#order" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product4.jpeg" alt="Berry Boost" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Chocolate Bento Cake</h3>
+				<p class="spotlight-card-module--desc">Bite-sized bliss! Our bento cakes are adorable, moist, and deliciously designed just for you.</p>
+				<span class="price">-</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			<a href="#order" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product5.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Cheesecake with Biscoff</h3>
+				<p class="spotlight-card-module--desc">Biscoff meets cheesecake! Creamy, crunchy, and utterly delicious, with a caramelized cookie twist.</p>
+				<span class="price">₹199</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			<a href="#order" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product6.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Assorted Brownie - Medium Box </h3>
+				<p class="spotlight-card-module--desc">Brownie bliss in a box! Our assorted brownie box offers a delicious mix of flavors and textures, perfect for sharing or savoring solo.</p>
+				<span class="price">₹699</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
 
-    <!-- About Section -->
-    <section>
-	<h1>Indulge Guilt-Free Dessert - Happy to serve fresh!</h1>	
-       <abt>
-	  <h2>About Us</h2>
-      <p>At NSDI Choco cravings, we're committed to using only the highest-quality, premium ingredients that are free from artificial preservatives and additives.
-	  Our brownies are made with love and care, using only the finest ingredients sourced from local suppliers whenever possible.
-	  We believe baking in a healthy way, without compromising on taste or quality.
-	  NSDI choco cravings offers custom catering services for events of all sizes. From weddings to corporate events,
-	  we'll work with you to create a memorable and indulgent experience. </p></abt>
-    </section>
-	<!-- Order Form -->
-	<!-- Stylish Order Form Section -->
-	<section id="order" style="padding: 4rem 1rem; background-color: rgba(255,255,255,0.9);">
-	<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 550px; margin: auto;">
-    
-    <!-- 📝 Order Form -->
-    <div style="flex: 1 1 450px; background: #fff; padding: 2rem; border-radius: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.1);">
-      <h2 style="text-align: center; margin-bottom: 1.5rem; color: #4E342E;">Place Your Order 🍫</h2>
+			<a href="#order" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product7.jpg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Brownie Dark chocolate overload - Mini Box</h3>
+				<p class="spotlight-card-module--desc">Dark chocolate overload! Our brownie is loaded with rich, velvety dark chocolate chunks for an intense chocolate fix.</p>
+				<span class="price">₹299</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+
+			<a href="#berries" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product8.jpeg" alt="Berry Boost" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">BirthDay - Ragi Brownie with Nuts & seeds One KG</h3>
+				<p class="spotlight-card-module--desc">Happy birthday to a healthier treat! Our ragi brownie is packed with nuts, seeds, and chocolatey goodness.</p>
+				<span class="price">₹2299</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			<a href="#classic" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product9.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Brownie with Nuts & Strawberry and Ferrero Half KG</h3>
+				<p class="spotlight-card-module--desc">Birthday bliss! Ferrero meets strawberry and nuts in our rich, fudgy brownie - a match made in dessert heaven.</p>
+				<span class="price">₹1079</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			
+			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product10.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Brownie with Chocolate Loaded One KG</h3>
+				<p class="spotlight-card-module--desc">Chocolate overload! Our brownie is loaded with chunks of rich chocolate for an intense, indulgent treat.</p>
+				<span class="price">₹1799</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			
+			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product11.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Brownie with Biscoff Ganache - Mini Box</h3>
+				<p class="spotlight-card-module--desc">Biscoff magic in every bite! Our brownie is elevated with a creamy Biscoff ganache, pure bliss.</p>
+				<span class="price">₹399</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			
+			<a href="#fudge" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product12.jpeg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Brownie with Dark Ganache Half KG</h3>
+				<p class="spotlight-card-module--desc">Dark chocolate birthday bliss! Our brownie is topped with a rich, velvety dark ganache for a luxurious treat.</p>
+				<span class="price">₹699</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			<a href="#classic" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product13.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Brownie with a Wedding theme One KG</h3>
+				<p class="spotlight-card-module--desc">Love is in the air! Celebrate your special day with our custom wedding-themed brownie, featuring rich chocolate, crunchy nuts, and sweet strawberries. A perfect blend of flavors and love.</p>
+				<span class="price">₹1999</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product14.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Pregnancy Theme Ragi Brownie One KG</h3>
+				<p class="spotlight-card-module--desc">Mom-to-be's delight! Our ragi brownie is a healthier treat option, rich in nutrients and chocolatey goodness.</p>
+				<span class="price">2199</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+
+			<a href="#fudge" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product15.jpeg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Ragi Brownie with Biscoff, Nuts, and Fruits Half KG</h3>
+				<p class="spotlight-card-module--desc">Celebrate in style! Our birthday brownie combines rich chocolate with crunchy Biscoff, nutty goodness, and sweet fruits. A delightful mix of textures and flavors to make your special day even sweeter..</p>
+				<span class="price">₹899</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product16.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Ragi Brownie loaded with Frutz, Seeds and Nuts One KG</h3>
+				<p class="spotlight-card-module--desc">Get your fix! Our brownie is loaded with crunchy nuts and sweet frutz, adding a delicious texture and flavor twist to our rich, fudgy chocolate.</p>
+				<span class="price">₹2699</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			
+			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product17.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Brownie with Chocolate Sponge Cake Five KG</h3>
+				<p class="spotlight-card-module--desc">Double the chocolate, double the delight! Our brownie meets moist chocolate cake sponge, creating a heavenly match made in dessert paradise.</p>
+				<span class="price">₹6999</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			
+			<a href="#fudge" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product18.jpeg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Brownie with White Ganache Heart Shape</h3>
+				<p class="spotlight-card-module--desc">"Love at first bite! Our rich, fudgy brownie is topped with a creamy white ganache heart, adding a touch of sweetness and romance to this decadent dessert.</p>
+				<span class="price">₹449</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			<a href="#classic" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product19.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Anniversary Theme Brownie One KG</h3>
+				<p class="spotlight-card-module--desc">Love that lasts forever! Celebrate your special milestone with our rich, decadent brownie, perfect for sharing with the one you love. A sweet way to mark your love story.</p>
+				<span class="price">₹1499</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			  <img src="/images/Product20.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Brownie with Dark & Milk Ganache Half KG</h3>
+				<p class="spotlight-card-module--desc">Birthday chocolate bliss! Our brownie combines dark and milk ganache for a decadent treat.</p>
+				<span class="price">₹649</span>
+				<div class="product-btn">Buy Now</div>
+				
+			  </div>
+			</a>
+
+</div>
+
+
+<section class="about-section">
+	<div class="about-content">
+	<h2>About Us</h2>
+	<p>
+	  At <strong>NSDI Choco Cravings</strong>, we’re passionate about baking brownies that are both indulgent and guilt-free. 
+	  We use only premium, locally sourced ingredients—free from artificial preservatives and additives.
+	</p>
+	<p>
+	  Every batch is made with love and care, keeping your health and taste buds in mind. 
+	  From weddings to corporate events, our custom catering adds a delicious touch to any occasion.
+	</p>
+	</div>
+</section>
+	<section id="order" class="order-section">
+  <div class="order-container">
+    <div class="order-form-card">
+      <h2>Place Your Order</h2>
       <form id="orderForm" onsubmit="submitForm(event)">
         <div class="form-group">
-          <input type="text" name="name" id="name" placeholder="Your Name" required oninput="updatePreview()" />
+          <input type="text" name="name" id="name" required oninput="updatePreview()" />
+          <label for="name">Your Name</label>
         </div>
         <div class="form-group">
-          <input type="email" name="email" id="email" placeholder="Email Address" required oninput="updatePreview()" />
+          <input type="email" name="email" id="email" required oninput="updatePreview()" />
+          <label for="email">Email Address</label>
         </div>
         <div class="form-group">
-          <input type="tel" name="phone" id="phone" placeholder="Phone Number" required oninput="updatePreview()" />
+          <input type="tel" name="phone" id="phone" required oninput="updatePreview()" />
+          <label for="phone">Phone Number</label>
         </div>
         <div class="form-group">
           <select name="product" id="product" required onchange="updatePreview()">
@@ -727,72 +1089,88 @@
             <option value="Classic Fudge">Classic Fudge</option>
             <option value="Almond Crunch">Almond Crunch</option>
             <option value="Keto Brownie">Keto Brownie</option>
-            <!-- Add more -->
           </select>
         </div>
         <div class="form-group">
-          <input type="number" name="quantity" id="quantity" min="1" placeholder="Quantity" required oninput="updatePreview()" />
+          <input type="number" name="quantity" id="quantity" min="1" required oninput="updatePreview()" />
+          <label for="quantity">Quantity</label>
         </div>
         <div class="form-group">
-          <textarea name="message" id="message" placeholder="Special Instructions" oninput="updatePreview()"></textarea>
+          <textarea name="message" id="message" rows="3" oninput="updatePreview()"></textarea>
+          <label for="message">Special Instructions</label>
         </div>
-	<!-- Google Pay Button Container -->
-		<div id="googlePayButtonContainer" class="googlePayButtonContainer">
-			<div class="gpay-button" onclick="onGooglePayButtonClicked()"></div>
-		</div>-->
-		
-        <div style="text-align: center;">
-          <button type="submit" style="background: #6A1B9A; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 10px; font-size: 1rem; cursor: pointer;">Submit Order</button>
+
+        <div class="gpay-button-wrapper">
+          <div class="gpay-button" onclick="onGooglePayButtonClicked()"></div>
         </div>
+
+        <button type="submit" class="submit-btn">Submit Order</button>
       </form>
     </div>
-	<div id="loadingSpinner" class="spinner-overlay" style="display:none;">
-	  <div class="spinner"></div>
+  </div>
+
+  <div id="loadingSpinner" class="spinner-overlay" style="display:none;">
+    <div class="spinner"></div>
+  </div>
+</section>
+<div id="orderFormWrapper" style="position: relative;">
+	<div id="successModal" class="inline-success-modal">
+	  <div class="modal-content">
+		<h2>Thank You for Your Order!</h2>
+		<p>Your order has been successfully submitted. We'll get back to you soon.</p>
+		<button onclick="closeModal()" class="close-btn">Close</button>
+	  </div>
 	</div>
-
-
-    <!-- 👀 Live Preview
-    <div style="flex: 1 1 400px; background: #F8F3F0; padding: 2rem; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.05);">
-      <h2 style="color: #5D4037; margin-bottom: 1rem;">🧾 Order Preview</h2>
-      <div style="line-height: 1.8;">
-        <p><strong>Name:</strong> <span id="previewName">-</span></p>
-        <p><strong>Email:</strong> <span id="previewEmail">-</span></p>
-        <p><strong>Phone:</strong> <span id="previewPhone">-</span></p>
-        <p><strong>Product:</strong> <span id="previewProduct">-</span></p>
-        <p><strong>Quantity:</strong> <span id="previewQuantity">-</span></p>
-        <p><strong>Message:</strong> <span id="previewMessage">-</span></p>
-      </div>
-    </div> -->
-
+</div>
+	<!-- WhatsApp Floating Button -->
+	<a href="https://wa.me/918973141898" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+	  <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="Chat on WhatsApp" />
+	</a>
+	
+	<section class="highlighted-section">
+  <h2 class="section-title"> Customise with Love: Our Top Picks </h2>
+  <div class="scroll-gallery auto-scroll" >
+	<div class="gallery-item"><img src="/images/H0.jpeg" alt="Choco Bliss"></div>
+    <div class="gallery-item"><img src="/images/H3.jpeg" alt="Nutty Treat"></div>
+    <div class="gallery-item"><img src="/images/H4.jpeg" alt="Caramel Lava"></div>
+	<div class="gallery-item"><img src="/images/H5.jpeg" alt="Berry Crunch"></div>
+    <div class="gallery-item"><img src="/images/H6.jpeg" alt="Nutty Treat"></div>
+    <!-- Add more as needed -->
   </div>
 </section>
 
+	<!-- Stylish Footer -->
+	<footer class="footer">
+	  <div class="footer-content">
+		<div class="footer-section">
+		  <h3>NSDI Choco Cravings</h3>
+		  <p>Indulge in guilt-free desserts made with love and premium ingredients. Pre-order 48 hrs in advance for guaranteed freshness.</p>
+		</div>
 
-<!-- 🛍️ Place Order / Chat -->
-<div class="floating-btn-group" id="floatingOrderBtn">
-  <a href="#order" class="floating-order-btn">🛍️ Place Order</a>
-</div>
+		<div class="footer-section">
+		  <h4>Contact</h4>
+		  <p>📞 8973141898 / 7373278025</p>
+		  <p>📩 DM or Call us on WhatsApp</p>
+		</div>
 
-
-
-	
-	 <div id="successModal" class="successModal">
-	  <div class="modal-content">
-		<p>✅ Your order has been submitted successfully!</p>
+		<div class="footer-section">
+		  <h4>Follow Us</h4>
+		  <div class="social-icons">
+			<a href="https://instagram.com/nsdi.chococravings" target="_blank" title="Instagram">
+			  <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
+			</a>
+			<a href="https://facebook.com/nsdi.chococravings" target="_blank" title="Facebook">
+			  <img src="https://img.icons8.com/ios-filled/30/ffffff/facebook-new.png" alt="Facebook">
+			</a>
+		  </div>
+		</div>
 	  </div>
-	</div>
-	
-	<a href="https://wa.me/918973141898" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
-	  <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="Chat on WhatsApp" />
-	</a> 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2025 NSDI Choco Cravings. All rights reserved.</p>
-      <p>Follow us on Instagram | Facebook</p>
-	  <p>NSDI.CHOCOCRAVINGS</p>
-	  <p>Call / WhatsApp: 8973141898 / 7373278025 ,    DM/CALL to Pre-order 48 Hrs in Advance  </p>  
-    </footer>
-     <!-- WhatsApp Floating Button -->
+
+	  <div class="footer-bottom">
+		<p>&copy; 2025 NSDI Choco Cravings. All rights reserved.</p>
+	  </div>
+	</footer>
+
 	
   </div>
   
@@ -873,7 +1251,32 @@ function scrollToOrderForm(event) {
       form.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  
+  
+ const cards = document.querySelectorAll('.hero-card-stack .card-card');
+  let current = 0;
 
+  function updateCardStack() {
+    cards.forEach((card, index) => {
+      const pos = (index - current + cards.length) % cards.length;
+      const offset = 850;
+      card.classList.add('active');
+      card.style.transform = `translate3d(${pos * offset}px, 0, 0) scale(${1 - pos * 0.1})`;
+      card.style.zIndex = cards.length - pos;
+      card.style.opacity = pos > 2 ? 0 : 1;
+    });
+  }
+
+  setInterval(() => {
+    current = (current + 1) % cards.length;
+    updateCardStack();
+  }, 3500);
+
+  updateCardStack();
+  
+  
+ 
+  
   
 </script>
 
