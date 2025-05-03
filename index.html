@@ -783,6 +783,47 @@ footer.footer {
   animation-play-state: paused;
 }
 
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero-section-split {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .hero-left img {
+    margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-card-stack {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: static;
+  }
+
+  .card-card {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .card-card img {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+  }
+}
 
 
 
@@ -808,8 +849,6 @@ footer.footer {
 	 <!-- Hero Section -->
 
 		<header class="hero-section-split" id="home">
-		
-		 
 		  <div class="hero-left" data-aos="fade-right">
 		   <img src="/images/trans_logo.png"  alt="NSDI Logo" style="max-height: 90px;margin-bottom: 8.5rem;" />
 			<h1 class="hero-title">Indulge Guilt-Free</h1>
@@ -842,7 +881,7 @@ footer.footer {
 		</header>
 
 		<div class="product-container">
-			<a href="#order" class="spotlight-card-module--link--XmveN">
+			<a href="#order" class="spotlight-card-module--link--XmveN" data-name="Wheat Banana Muffin - Mini Box" data-price="90">
 			  <img src="/images/Product1.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Wheat Banana Muffin - Mini Box</h3>
@@ -851,7 +890,7 @@ footer.footer {
 				<div class="product-btn">Buy Now</div>
 			  </div>
 			</a>
-			<a href="#order" class="spotlight-card-module--link--XmveN">
+			<a href="#order" class="spotlight-card-module--link--XmveN" data-name="Ragi Cupcake with Chocolate Frosting - Mini Box" data-price="90" >
 			  <img src="/images/Product2.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Ragi Cupcake with Chocolate Frosting - Mini Box</h3>
@@ -861,7 +900,7 @@ footer.footer {
 			</div>
 			</a>
 
-			<a href="#order" class="spotlight-card-module--link--XmveN">
+			<a href="#order" class="spotlight-card-module--link--XmveN" data-name="Ragi Cupcake - Mini Box" data-price="90"  >
 			  <img src="/images/Product3.jpeg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Ragi Cupcake - Mini Box</h3>
@@ -871,7 +910,7 @@ footer.footer {
 				</div>
 			</a>
 
-			<a href="#order" class="spotlight-card-module--link--XmveN">
+			<a href="#order" class="spotlight-card-module--link--XmveN" data-name="Chocolate Bento Cake" data-price="-" >
 			  <img src="/images/Product4.jpeg" alt="Berry Boost" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Chocolate Bento Cake</h3>
@@ -881,7 +920,7 @@ footer.footer {
 				
 			  </div>
 			</a>
-			<a href="#order" class="spotlight-card-module--link--XmveN">
+			<a href="#order" class="spotlight-card-module--link--XmveN"  data-name="Cheesecake with Biscoff" data-price="199" >
 			  <img src="/images/Product5.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Cheesecake with Biscoff</h3>
@@ -891,7 +930,7 @@ footer.footer {
 				
 			  </div>
 			</a>
-			<a href="#order" class="spotlight-card-module--link--XmveN">
+			<a href="#order" class="spotlight-card-module--link--XmveN"  data-name="Assorted Brownie - Medium Box" data-price="699" >
 			  <img src="/images/Product6.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Assorted Brownie - Medium Box </h3>
@@ -902,7 +941,7 @@ footer.footer {
 			  </div>
 			</a>
 
-			<a href="#order" class="spotlight-card-module--link--XmveN">
+			<a href="#order" class="spotlight-card-module--link--XmveN" data-name="Brownie Dark chocolate overload - Mini Box" data-price="299" >
 			  <img src="/images/Product7.jpg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Brownie Dark chocolate overload - Mini Box</h3>
@@ -913,7 +952,7 @@ footer.footer {
 			  </div>
 			</a>
 
-			<a href="#berries" class="spotlight-card-module--link--XmveN">
+			<a href="#berries" class="spotlight-card-module--link--XmveN"  data-name="BirthDay - Ragi Brownie with Nuts & seeds One KG" data-price="2299">
 			  <img src="/images/Product8.jpeg" alt="Berry Boost" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">BirthDay - Ragi Brownie with Nuts & seeds One KG</h3>
@@ -923,7 +962,7 @@ footer.footer {
 				
 			  </div>
 			</a>
-			<a href="#classic" class="spotlight-card-module--link--XmveN">
+			<a href="#classic" class="spotlight-card-module--link--XmveN" data-name="Birthday Brownie with Nuts & Strawberry and Ferrero Half KG" data-price="1079">
 			  <img src="/images/Product9.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Birthday Brownie with Nuts & Strawberry and Ferrero Half KG</h3>
@@ -934,7 +973,7 @@ footer.footer {
 			  </div>
 			</a>
 			
-			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			<a href="#walnut" class="spotlight-card-module--link--XmveN" data-name="Birthday Brownie with Chocolate Loaded One KG" data-price="1799">
 			  <img src="/images/Product10.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Birthday Brownie with Chocolate Loaded One KG</h3>
@@ -945,7 +984,7 @@ footer.footer {
 			  </div>
 			</a>
 			
-			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			<a href="#walnut" class="spotlight-card-module--link--XmveN"  data-name="Brownie with Biscoff Ganache - Mini Box" data-price="399">
 			  <img src="/images/Product11.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Brownie with Biscoff Ganache - Mini Box</h3>
@@ -956,7 +995,7 @@ footer.footer {
 			  </div>
 			</a>
 			
-			<a href="#fudge" class="spotlight-card-module--link--XmveN">
+			<a href="#fudge" class="spotlight-card-module--link--XmveN"  data-name="Birthday Brownie with Dark Ganache Half KG" data-price="699">
 			  <img src="/images/Product12.jpeg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Birthday Brownie with Dark Ganache Half KG</h3>
@@ -966,7 +1005,7 @@ footer.footer {
 				
 			  </div>
 			</a>
-			<a href="#classic" class="spotlight-card-module--link--XmveN">
+			<a href="#classic" class="spotlight-card-module--link--XmveN"  data-name="Birthday Brownie with a Wedding theme One KG" data-price="1999">
 			  <img src="/images/Product13.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Birthday Brownie with a Wedding theme One KG</h3>
@@ -976,7 +1015,7 @@ footer.footer {
 				
 			  </div>
 			</a>
-			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			<a href="#walnut" class="spotlight-card-module--link--XmveN" data-name="Pregnancy Theme Ragi Brownie One KG" data-price="2199">
 			  <img src="/images/Product14.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Pregnancy Theme Ragi Brownie One KG</h3>
@@ -987,7 +1026,7 @@ footer.footer {
 			  </div>
 			</a>
 
-			<a href="#fudge" class="spotlight-card-module--link--XmveN">
+			<a href="#fudge" class="spotlight-card-module--link--XmveN"  data-name="Birthday Ragi Brownie with Biscoff, Nuts, and Fruits Half KG" data-price="899">
 			  <img src="/images/Product15.jpeg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Birthday Ragi Brownie with Biscoff, Nuts, and Fruits Half KG</h3>
@@ -997,7 +1036,7 @@ footer.footer {
 				
 			  </div>
 			</a>
-			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			<a href="#walnut" class="spotlight-card-module--link--XmveN" data-name="Birthday Ragi Brownie loaded with Frutz, Seeds and Nuts One KG" data-price="2699">
 			  <img src="/images/Product16.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Birthday Ragi Brownie loaded with Frutz, Seeds and Nuts One KG</h3>
@@ -1008,7 +1047,7 @@ footer.footer {
 			  </div>
 			</a>
 			
-			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			<a href="#walnut" class="spotlight-card-module--link--XmveN" data-name="Birthday Brownie with Chocolate Sponge Cake Five KG" data-price="6999">
 			  <img src="/images/Product17.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Birthday Brownie with Chocolate Sponge Cake Five KG</h3>
@@ -1019,7 +1058,7 @@ footer.footer {
 			  </div>
 			</a>
 			
-			<a href="#fudge" class="spotlight-card-module--link--XmveN">
+			<a href="#fudge" class="spotlight-card-module--link--XmveN" data-name="Brownie with White Ganache Heart Shape" data-price="449">
 			  <img src="/images/Product18.jpeg" alt="Fudge Fantasy" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Brownie with White Ganache Heart Shape</h3>
@@ -1029,7 +1068,7 @@ footer.footer {
 				
 			  </div>
 			</a>
-			<a href="#classic" class="spotlight-card-module--link--XmveN">
+			<a href="#classic" class="spotlight-card-module--link--XmveN"  data-name="Anniversary Theme Brownie One KG" data-price="1499">
 			  <img src="/images/Product19.jpeg" alt="Classic Choco" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Anniversary Theme Brownie One KG</h3>
@@ -1039,7 +1078,7 @@ footer.footer {
 				
 			  </div>
 			</a>
-			<a href="#walnut" class="spotlight-card-module--link--XmveN">
+			<a href="#walnut" class="spotlight-card-module--link--XmveN"  data-name="Birthday Brownie with Dark & Milk Ganache Half KG" data-price="649">
 			  <img src="/images/Product20.jpeg" alt="Walnut Bliss" class="spotlight-card-module--image" />
 			  <div class="spotlight-card-module--content">
 				<h3 class="spotlight-card-module--title">Birthday Brownie with Dark & Milk Ganache Half KG</h3>
@@ -1084,12 +1123,12 @@ footer.footer {
           <label for="phone">Phone Number</label>
         </div>
         <div class="form-group">
-          <select name="product" id="product" required onchange="updatePreview()">
-            <option value="">Select Product</option>
-            <option value="Classic Fudge">Classic Fudge</option>
-            <option value="Almond Crunch">Almond Crunch</option>
-            <option value="Keto Brownie">Keto Brownie</option>
-          </select>
+          <input type="text" name="product" id="product" required oninput="updatePreview()" />
+          <label for="product">Product</label>
+        </div>
+		<div class="form-group">
+          <input type="text" name="price" id="price" required oninput="updatePreview()" />
+          <label for="product">Price</label>
         </div>
         <div class="form-group">
           <input type="number" name="quantity" id="quantity" min="1" required oninput="updatePreview()" />
@@ -1274,7 +1313,18 @@ function scrollToOrderForm(event) {
 
   updateCardStack();
   
-  
+  document.querySelectorAll('.spotlight-card-module--link--XmveN').forEach(card => {
+    card.addEventListener('click', () => {
+      const name = card.getAttribute('data-name');
+      const price = card.getAttribute('data-price');
+
+      document.getElementById('product').value = name;
+      document.getElementById('price').value = price;
+
+      // Optional: Scroll to order form smoothly
+      document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
  
   
   
