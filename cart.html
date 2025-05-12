@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart – NSDI Choco Cravings</title>
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body class="cart-page">
+  <header class="header">
+    <h1>🛒</h1><p class="subTittle">Happy to serve fresh..!</p>
+  </header>
+
+  <main>
+  <div class="cartTittle">Your Cart</div>
+  <div id="cartItems"></div> <!-- Cart items will be dynamically inserted here -->
+  <div class="cart-summary">
+    <div class="total-price">
+      <p style ="color:black">Total: ₹<span id="totalPrice">0</span></p>
+    </div>
+	<a href="orderForm.html" onclick="proceedToCheckout()">
+    <button  class="submit-btn">Proceed to Checkout</button>
+  </div>
+</main>
+
+<script>
+  // Dynamically load cart items from localStorage
+  function loadCartItems() {
+    const cart = getCart();
+    const cartItemsContainer = document.getElementById('cartItems');
+    
+    cartItemsContainer.innerHTML = ''; // Clear existing cart items
+    
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+    } else {
+      cart.forEach((item, index) => {
+        const cartItemDiv = document.createElement('div');
+        cartItemDiv.classList.add('cart-item');
+		cartItemDiv.setAttribute('data-item-id', item.id)
+        cartItemDiv.innerHTML = `
+		<img src="${item.image} "alt="${item.name}" />
+		 <div class="cart-item-details">
+          <div class="cart-item-title">${item.name}</div>
+		  <div class="cart-item-price">₹${item.price} each</div>
+		  <!--<div class="cart-item-title">${item.name} - ₹${item.price} x ${item.quantity}</div> -->
+		  <div class="cart-item-qty">
+			  <input type="number" min="1" data-index="${item.id}" value="${item.quantity}"  />
+		  </div>
+		  </div>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})" data-index="${item.id}" >Remove</button>
+	     `;
+        cartItemsContainer.appendChild(cartItemDiv);
+      });
+    }
+    
+    // Update the cart summary
+    updateCartSummary();
+  }
+
+  // Call loadCartItems when the page loads
+  window.onload = loadCartItems;
+</script>
+  <script src="cart.js"></script>
+</body>
+</html>

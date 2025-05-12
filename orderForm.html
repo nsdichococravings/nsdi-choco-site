@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart – NSDI Choco Cravings</title>
+  <link rel="stylesheet" href="orderForm.css" />
+</head>
+<body>
+	<section id="order" class="order-section">
+		<input type="hidden" name="cartData" id="cartData" />
+	  <div class="order-container">
+		<div class="order-form-card">
+		  <h2>Place Your Order</h2>
+		  <form id="orderForm" onsubmit="submitForm(event)">
+			<div class="form-group">
+			  <input type="text" name="name" id="name" required oninput="updatePreview()" />
+			  <label for="name">Your Name</label>
+			</div>
+			<div class="form-group">
+			  <input type="email" name="email" id="email" required oninput="updatePreview()" />
+			  <label for="email">Email Address</label>
+			</div>
+			<div class="form-group">
+			  <input type="tel" name="phone" id="phone" required oninput="updatePreview()" />
+			  <label for="phone">Phone Number</label>
+			</div>
+			<div class="form-group">
+			  <textarea   name="product" id="product" rows="4" readonly style="width:100%;padding:10px;border-radius:8px;" required oninput="updatePreview()" ></textarea>
+			  <label for="product">Product Details</label>
+			</div>
+			<div class="form-group">
+			  <input type="text" name="price" id="price" required oninput="updatePreview()" />
+			  <label for="product">Total Price</label>
+			</div>
+			<!--
+			<div class="form-group">
+			
+q			<input type="number" name="quantity" id="quantity" min="1" required oninput="updatePreview()" />
+			  <label for="quantity">Quantity</label>
+			</div>-->
+			<div class="form-group">
+			  <textarea name="address" id="address" rows="3" oninput="updatePreview()"></textarea>
+			  <label for="address">Delivery Address</label>
+			</div>
+			<div class="form-group">
+			  <textarea name="message" id="message" rows="3" oninput="updatePreview()"></textarea>
+			  <label for="message">Special Instructions</label>
+			</div>
+			<button id="payBtn" style="display:none" class="pay-now-btn">Pay with Razorpay</button>
+			<div class="gpay-button-wrapper">
+			  <div class="gpay-button" onclick="onGooglePayButtonClicked()"></div>
+			</div>
+			<div class="order-summary" id="orderSummary"></div>
+			<button type="submit" class="submit-btn">Submit Order</button>
+		  </form>
+		</div>
+	  </div>
+
+	  <div id="loadingSpinner" class="spinner-overlay" style="display:none;">
+		<div class="spinner"></div>
+	  </div>
+	</section>
+	<div id="orderFormWrapper" style="position: relative;">
+		<div id="successModal" class="inline-success-modal">
+		  <div class="modal-content">
+			<h2>Thank You for Your Order!</h2>
+			<p>Your order has been successfully submitted. We'll get back to you soon.</p>
+			<button onclick="closeModal()" class="close-btn">Close</button>
+		  </div>
+		</div>
+	</div>
+		<!-- WhatsApp Floating Button -->
+		<a href="https://wa.me/918973141898" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+		  <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="Chat on WhatsApp" />
+		</a>
+  <script src="orderForm.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+ <script>
+  document.getElementById("payBtn").addEventListener("click", function(e) {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (cart.length === 0) {
+      alert("Your cart is empty");
+      return;
+    }
+
+    const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100; // in paise
+
+    const options = {
+      key: "rzp_test_HO8PVElSqyPFRu", // Replace with your Razorpay Key ID
+      amount: totalAmount,
+      currency: "INR",
+      name: "NSDI Choco Cravings",
+      description: "Order Payment",
+      image: "https://your-logo-url.com/logo.png", // Optional logo
+      handler: function (response) {
+        alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+        // You can also redirect or show confirmation here
+      },
+      prefill: {
+        name: "", // Can autofill user's name
+        email: "",
+        contact: ""
+      },
+      theme: {
+        color: "#FF7C57" // Match your brand color
+      },
+      method: {
+        upi: true, // ✅ GPay support via UPI
+        card: true,
+        netbanking: true,
+        wallet: true
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+    e.preventDefault();
+  });
+</script> 
+  
+</body>
