@@ -47,12 +47,9 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
 			  <textarea name="message" id="message" rows="3" oninput="updatePreview()"></textarea>
 			  <label for="message">Special Instructions</label>
 			</div>
-			<button class="payment-btn" id="payBtn" class="pay-now-btn">Pay with Razorpay</button>
-			<div class="gpay-button-wrapper">
-			  <div class="gpay-button" onclick="onGooglePayButtonClicked()"></div>
-			</div>
+			<button type="payment" class="payment-btn" id="payment-btn">Payment</button>
 			<div class="order-summary" id="orderSummary"></div>
-			<button type="submit" class="submit-btn">Submit Order</button>
+			<button type="submit" style="display:none;" class="submit-btn" id="submit-btn">Submit Order</button>
 		  </form>
 		</div>
 	  </div>
@@ -96,6 +93,14 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
       handler: function (response) {
         alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
         // You can also redirect or show confirmation here
+		
+	  const submitBtn = document.getElementById("submit-btn");
+      submitBtn.style.display = "inline-block";
+      submitBtn.disabled = false;
+	  
+	  // Optional: Disable pay button to prevent re-payment
+      document.getElementById("payment-btn").disabled = true;
+      document.getElementById("payment-btn").textContent = "Payment Completed";
       },
       prefill: {
         name: "", // Can autofill user's name
