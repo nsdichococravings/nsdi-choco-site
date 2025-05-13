@@ -87,7 +87,7 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
     const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100; // in paise
 
     const options = {
-      key: "rzp_test_HO8PVElSqyPFRu", // Replace with your Razorpay Key ID
+      key: "rzp_live_80JuM6XhEIRwTU", // Replace with your Razorpay Key ID
       amount: totalAmount,
       currency: "INR",
       name: "NSDI Choco Cravings",
