@@ -187,32 +187,16 @@
 
 
 .payment-btn {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  background: linear-gradient(145deg, #4b2e83, #6a3dad); /* Royal gradient */
-  color: #fff;
-  border-radius: 50px;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  z-index: 999;
-  font-family: 'Poppins', sans-serif;
-  transition: transform 0.3s ease;
-}
-
-.payment-btn {
-  background: #6A1B9A;
-  color: #fff;
-  width: 100%;
-  padding: 0.9rem;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s;
+    background: #067724;
+    color: #fff;
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
 }
 
 .payment-btn:hover {
