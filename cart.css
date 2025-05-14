@@ -123,3 +123,32 @@ body {
   cursor: pointer;
 }
 
+.proceed-checkout-btn {
+  display: block;
+  width: 90%;               /* Full width on mobile */
+  max-width: 400px;         /* Prevent it from being too large on desktop */
+  margin: 20px auto;        /* Center it */
+  padding: 15px 20px;
+  font-size: 18px;
+  background-color: #6A0DAD; /* Premium purple */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.proceed-checkout-btn:hover {
+  background-color: #5b0cad;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .proceed-checkout-btn {
+    font-size: 16px;
+    padding: 12px;
+    bottom: 100px; /* If floating icons are near bottom */
+  }
+}
+
