@@ -155,3 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCart(); 
   initializeCart(); 
 });
+function proceedToCheckout() {
+window.location.href = "orderForm.html";
+}
