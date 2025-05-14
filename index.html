@@ -672,7 +672,7 @@ footer.footer {
 
 .whatsapp-float {
   position: fixed;
-  bottom: 20px;
+  bottom: 90px;
   right: 20px;
   z-index: 1000;
   background: #25D366;
@@ -767,7 +767,7 @@ footer.footer {
   font-size: 3rem;
   font-weight: 800;
   margin: 0 0 2rem 2rem;
-  color: #6A1B9A;
+  color: #d7811c;
 }
 
 .scroll-gallery {
@@ -849,7 +849,7 @@ footer.footer {
 
 #cartSummary {
   position: fixed;
-  bottom: 100px;
+  bottom: 20px;
   right: 20px;
   background: linear-gradient(145deg, #4b2e83, #6a3dad); /* Royal gradient */
   color: #fff;
@@ -907,6 +907,11 @@ footer.footer {
     font-size: 20px;
   }
 }
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 80px; /* move up */
+    right: 20px;
+  }
 
 /* Responsive Tweak */
 @media (max-width: 768px) {
@@ -952,6 +957,9 @@ font-size: 14px;
 
 		  <div class="hero-right" data-aos="fade-left">
 			<div class="hero-card-stack">
+			<div class="card-card" style="z-index: 7;">
+				<img src="/images/hero6.jpg" alt="Choco Fudge">
+			  </div>
 			<div class="card-card" style="z-index: 6;">
 				<img src="/images/hero18.jpeg" alt="Choco Fudge">
 			  </div>
@@ -1190,7 +1198,33 @@ font-size: 14px;
 				
 			  </div>
 			</a>
-
+			<a class="spotlight-card-module--link--XmveN"  data-name="Butter Bun" data-price="50">
+			  <img src="/images/Product21.jpg" alt="Butter Bun" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Butter Bun Pack of 6</h3>
+				<p class="spotlight-card-module--desc">Soft, fluffy bun slathered with rich, creamy butter and baked to golden perfection. A deliciously sweet and savory treat that's perfect for any time of day!</p>
+				<span class="price">₹50</span>
+				<div class="product-btn" onclick='addToCart({ id: 22, name: "Butter Bun Pack of 6", price: 50, quantity: 1,image:"/images/Product21.jpg" })'>Add to Cart</div>
+			  </div>
+			</a>
+			<a class="spotlight-card-module--link--XmveN"  data-name="Butter Bun" data-price="70">
+			  <img src="/images/Product22.jpg" alt="Butter Bun" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Butter Bun Pack of 9</h3>
+				<p class="spotlight-card-module--desc">Soft, fluffy bun slathered with rich, creamy butter and baked to golden perfection. A deliciously sweet and savory treat that's perfect for any time of day!</p>
+				<span class="price">₹70</span>
+				<div class="product-btn" onclick='addToCart({ id: 21, name: "Butter Bun Pack of 9", price: 70, quantity: 1,image:"/images/Product22.jpg" })'>Add to Cart</div>
+			  </div>
+			</a>
+			<a class="spotlight-card-module--link--XmveN"  data-name="Butter Bun" data-price="1270">
+			  <img src="/images/Product23.jpg" alt="Butter Bun" class="spotlight-card-module--image" />
+			  <div class="spotlight-card-module--content">
+				<h3 class="spotlight-card-module--title">Birthday Brownie loaded with Cherry, Oreo and Nuts Half KG</h3>
+				<p class="spotlight-card-module--desc">Get your fix! Our brownie is loaded with crunchy nuts and sweet frutz, adding a delicious texture and flavor twist to our rich, fudgy chocolate.!</p>
+				<span class="price">₹1270</span>
+				<div class="product-btn" onclick='addToCart({ id: 23, name: "Butter Bun Pack of 9", price: 70, quantity: 1,image:"/images/Product23.jpg" })'>Add to Cart</div>
+			  </div>
+			</a>
 		</div>
 		</section>
 
@@ -1221,6 +1255,7 @@ font-size: 14px;
     <div class="gallery-item"><img src="/images/H4.jpeg" alt="Caramel Lava"></div>
 	<div class="gallery-item"><img src="/images/H5.jpeg" alt="Berry Crunch"></div>
     <div class="gallery-item"><img src="/images/H6.jpeg" alt="Nutty Treat"></div>
+	<div class="gallery-item"><img src="/images/H7.jpg" alt="Nutty Treat"></div>
     <!-- Add more as needed -->
   </div>
 </section>
