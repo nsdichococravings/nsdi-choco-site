@@ -88,9 +88,22 @@ function addToCart(product) {
   } else {
     cart[existingProductIndex].quantity += 1; // Increase quantity if the item is already in the cart
   }
-
+	Swal.fire({
+		toast: true,
+		position: 'center',
+		icon: 'success',
+		title: 'Added to cart',
+		showConfirmButton: false,
+		timer: 2000,
+		background: '#2c003e',
+		color: '#FFD700',
+		customClass: {
+		  popup: 'swal-cart-toast'
+		}
+	  });
   saveCart(cart);
   updateCartSummary();
+	 
 }
 
 // Remove item from the cart
