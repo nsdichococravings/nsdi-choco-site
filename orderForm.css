@@ -203,6 +203,13 @@
   background: #4e0b77;
 }
 
+.swal-wide {
+  width: 400px !important;
+  border-radius: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
   .hero-section-split {
