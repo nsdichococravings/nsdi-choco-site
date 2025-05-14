@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cart – NSDI Choco Cravings</title>
   <link rel="stylesheet" href="orderForm.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 	<section id="order" class="order-section">
 		<input type="hidden" name="cartData" id="cartData" />
 	  <div class="order-container">
 		<div class="order-form-card">
-		  <h2>Place Your Order</h2>
+		  <h2 id="orderFormTittle">Place Your Order</h2>
 		  <form id="orderForm" onsubmit="submitForm(event)">
 			<div class="form-group">
 			  <input type="text" name="name" id="name" required oninput="updatePreview()" />
@@ -91,16 +93,35 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
       description: "Order Payment",
       image: "https://your-logo-url.com/logo.png", // Optional logo
       handler: function (response) {
-        alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
-        // You can also redirect or show confirmation here
-		
-	  const submitBtn = document.getElementById("submit-btn");
-      submitBtn.style.display = "inline-block";
-      submitBtn.disabled = false;
-	  
-	  // Optional: Disable pay button to prevent re-payment
-      document.getElementById("payment-btn").disabled = true;
-      document.getElementById("payment-btn").textContent = "Payment Completed";
+
+		Swal.fire({
+				  title: '🎉 Payment Successful!',
+				  html: `<p>Your payment was completed successfully.</p>
+						 <strong>Payment ID:</strong><br>${response.razorpay_payment_id}`,
+				  icon: 'success',
+				  confirmButtonText: 'Submit Order',
+				  confirmButtonColor: '#6A0DAD',
+				  backdrop: true,
+				  customClass: {
+					popup: 'swal-wide'
+				  }
+				}).then((result) => {
+				  if (result.isConfirmed) {
+									  //  alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+						// You can also redirect or show confirmation here
+						
+					  // Optional: Disable pay button to prevent re-payment
+					  document.getElementById("payment-btn").disabled = true;
+					  document.getElementById("payment-btn").textContent = "Payment Completed";
+					   submitForm();
+					   localStorage.removeItem("cart");
+						
+					   setTimeout(() => {
+						window.location.href = "nsdi_index.html"; // or "/" or the actual path to home
+					   }, 10000); // 4 seconds delay
+				  }
+				});
+    
       },
       prefill: {
         name: "", // Can autofill user's name
