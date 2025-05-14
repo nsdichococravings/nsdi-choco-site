@@ -93,13 +93,13 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
       description: "Order Payment",
       image: "https://your-logo-url.com/logo.png", // Optional logo
       handler: function (response) {
-
+		submitForm();
 		Swal.fire({
 				  title: '🎉 Payment Successful!',
 				  html: `<p>Your payment was completed successfully.</p>
 						 <strong>Payment ID:</strong><br>${response.razorpay_payment_id}`,
 				  icon: 'success',
-				  confirmButtonText: 'Submit Order',
+				  confirmButtonText: 'Finish',
 				  confirmButtonColor: '#6A0DAD',
 				  backdrop: true,
 				  customClass: {
@@ -113,16 +113,13 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
 					  // Optional: Disable pay button to prevent re-payment
 					  document.getElementById("payment-btn").disabled = true;
 					  document.getElementById("payment-btn").textContent = "Payment Completed";
-					   submitForm();
 					   localStorage.removeItem("cart");
-						
-					   setTimeout(() => {
+					  setTimeout(() => {
 						window.location.href = "nsdi_index.html"; // or "/" or the actual path to home
 					   }, 10000); // 4 seconds delay
 				  }
 				});
-    
-      },
+ },
       prefill: {
         name: "", // Can autofill user's name
         email: "",
