@@ -2,6 +2,7 @@
   const form = document.getElementById("orderForm");
   const modal = document.getElementById("successModal");
   const orderFormTittle = document.getElementById("orderFormTittle");
+  let finalPrice;
 
 
   function submitForm() {
@@ -73,10 +74,77 @@ window.addEventListener('DOMContentLoaded', () => {
     ).join("\n");
 	const cartData = document.getElementById("cartData").value;
 	document.getElementById("product").value = cartData;
-	document.getElementById("price").value = totalPrice;
+	document.getElementById("subtotal").innerText  = totalPrice;
+	document.getElementById("price").innerText  = totalPrice;
+    localStorage.setItem("finalPrice", totalPrice.toFixed(2));
   } else {
     hiddenInput.value = "No items in cart";
   }
 });
 
+
+const offers = {
+  NSDIFIRST2: 2, // 2 off
+  NSDIRG3: 3, // 3 off
+  NSDILG3: 3, // 3 off
+  NSDISPL22:5
+};
+/*
+function applyOffer() {
+  const code = document.getElementById("offerCode").value.trim().toUpperCase();
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  //const subtotal = 100; // Example subtotal, could be dynamic
+  let discount = 0;
+
+  if (offers.hasOwnProperty(code)) {
+    discount = offers[code];
+    document.getElementById("offerMessage").innerText = `code applied: ${discount}% off`;
+  } else {
+    document.getElementById("offerMessage").innerText = `Invalid offer code.`;
+  }
+ 
+  const FinalDiscountValue = subtotal * discount /100 ;
+  document.getElementById("discount").innerText = FinalDiscountValue;
+  document.getElementById("price").innerText = subtotal - FinalDiscountValue;
+}
+
+*/
+function applyOffer() {
+  const code = document.getElementById("offerCode").value.trim().toUpperCase();
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  let discount = 0;
+  let brownieTotal = 0;
+
+  // Check if cart contains a Brownie item
+  cart.forEach(item => {
+    if (item.name.toLowerCase().includes("brownie")) {
+      brownieTotal += item.price * item.quantity;
+    }
+  });
+  finalPrice = subtotal;
+  localStorage.setItem("finalPrice", finalPrice.toFixed(2));
+  if (offers.hasOwnProperty(code) && brownieTotal > 0) {
+    discount = offers[code];
+    const discountValue = (brownieTotal * discount) / 100;
+
+    document.getElementById("offerMessage").innerText = `Code applied: ${discount}% off on Brownies!`;
+    document.getElementById("discount").innerText = discountValue.toFixed(2);
+    document.getElementById("price").innerText = (subtotal - discountValue).toFixed(2);
+	localStorage.setItem("finalPrice", (subtotal - discountValue).toFixed(2));
+  } else if (!offers.hasOwnProperty(code)) {
+    document.getElementById("offerMessage").innerText = `Invalid offer code.`;
+    document.getElementById("discount").innerText = "0.00";
+    document.getElementById("price").innerText = subtotal.toFixed(2);
+	localStorage.setItem("finalPrice", (subtotal - discountValue).toFixed(2));
+  } else {
+    document.getElementById("offerMessage").innerText = `This code only applies to Brownie items.`;
+    document.getElementById("discount").innerText = "0.00";
+    document.getElementById("price").innerText = subtotal.toFixed(2);
+	localStorage.setItem("finalPrice", (subtotal - discountValue).toFixed(2));
+  }
+  
+}
 const orderSummary = document.getElementById("orderSummary");
+
