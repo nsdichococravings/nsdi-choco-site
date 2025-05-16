@@ -78,7 +78,7 @@ function saveCart(cart) {
 
 // Add item to the cart
 function addToCart(product) {
-
+  clearPriceOnCartChange();	
   console.log('Product added to cart:', product);
   const cart = getCart();
   const existingProductIndex = cart.findIndex(item => item.id === product.id);
@@ -108,6 +108,7 @@ function addToCart(product) {
 
 // Remove item from the cart
 function removeFromCart(productId) {
+  clearPriceOnCartChange();	
   let cart = getCart();
   
      // Visually hide the element
@@ -169,5 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeCart(); 
 });
 function proceedToCheckout() {
+clearPriceOnCartChange();
 window.location.href = "orderForm.html";
+}
+
+function clearPriceOnCartChange() {
+  localStorage.removeItem("finalPrice");
 }
