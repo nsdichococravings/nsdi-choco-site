@@ -143,6 +143,44 @@ body {
   background-color: #5b0cad;
 }
 
+
+
+.back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background-color: #f1f5f9;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s, transform 0.2s;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.back-home-btn:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+.home-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #007aff;
+}
+
+@media (max-width: 600px) {
+  .back-home-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+
 /* Mobile tweaks */
 @media (max-width: 768px) {
   .proceed-checkout-btn {
