@@ -58,6 +58,21 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
 			  <textarea name="message" id="message" rows="3" oninput="updatePreview()"></textarea>
 			  <label for="message">Special Instructions</label>
 			</div>
+			  <div class="price-summary" >
+			  <p>Subtotal: <span id="subtotal">0.00</span></p>
+			  <p>Discount: -<span id="discount">0.00</span></p>
+			  <p><strong>Total: <span type="text" name="price" id="price" required oninput="updatePreview()">0.00</span></strong></p>
+			 <!-- <input type="text" name="price" id="price" required oninput="updatePreview()" /> 
+			  <label for="product">Total Price</label>-->
+			</div>
+			<div class="offer-code-section">
+			  <label for="offerCode" class="promo-label">Have an offer code?</label>
+			  <div class="promo-input-group">
+				  <input type="text" id="offerCode"  placeholder="Enter code" />
+				  <button onclick="applyOffer()">Apply</button>
+			  </div>
+			  <p id="offerMessage"  class="promo-message"></p>
+			</div>
 			<button type="payment" class="payment-btn" id="payment-btn">Payment</button>
 			<div class="order-summary" id="orderSummary"></div>
 			<button type="submit" style="display:none;" class="submit-btn" id="submit-btn">Submit Order</button>
@@ -92,8 +107,8 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
       return;
     }
 
-    const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100; // in paise
-
+  //const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100; // in paise
+  const priceToCharge = parseFloat(localStorage.getItem("finalPrice") || 0)* 100; 
     const options = {
       key: "rzp_live_80JuM6XhEIRwTU", // Replace with your Razorpay Key ID
       amount: totalAmount,
