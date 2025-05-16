@@ -209,6 +209,100 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.offer-code-section {
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.offer-code-section input {
+  padding: 8px;
+  margin-right: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.offer-code-section button {
+  padding: 8px 12px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.offer-code-section button:hover {
+  background-color: #005bb5;
+}
+
+
+.back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background-color: #f1f5f9;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s, transform 0.2s;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.back-home-btn:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+.home-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #007aff;
+}
+
+
+.back-btn {
+  display: block;
+  width: 90%;               /* Full width on mobile */
+  max-width: 400px;         /* Prevent it from being too large on desktop */
+  margin: 20px auto;        /* Center it */
+  padding: 15px 20px;
+  font-size: 18px;
+  background-color: #6A0DAD; /* Premium purple */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.orderForm-page{
+	color: linear-gradient(90deg, #302b63, #e52e71);
+	background: linear-gradient(270deg, 
+    #f1c6b7,   /* Soft Peach */
+    #f9e3d1
+	 );
+  background-size: 800% 800%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@media (max-width: 600px) {
+  .back-home-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+
+#offerMessage {
+  margin-top: 8px;
+  color: green;
+}
+
 
 /* Responsive design */
 @media (max-width: 768px) {
