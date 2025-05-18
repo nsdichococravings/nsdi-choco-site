@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <!-- Meta Description -->
+	<!-- Meta Keywords (optional, not used much by Google anymore) -->
+<meta name="keywords" content="Brwonie,Dessert,Healthy Brownie,Premium Brownie,Rich in taste,Dessert, Delight Dessert,Homemade brownie,fudgy brownie,Couverture,Belgium,Begian Chocolate,Chocolate"/>
+<meta name="description" content="we’re passionate about baking brownies that are both indulgent and guilt-free. 
+	  We use only premium, locally sourced ingredients—free from artificial preservatives and additives"/>
+<meta property="og:type" content="https://nsdichococravings.netlify.app/" />
   <title>Cart – NSDI Choco Cravings</title>
   <link rel="stylesheet" href="orderForm.css" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -23,7 +29,7 @@
 	  <div class="order-container">
 		<div class="order-form-card">
 		  <h2 id="orderFormTittle">Place Your Order</h2>
-		  <form id="orderForm" onsubmit="submitForm(event)">
+		  <form id="orderForm">
 			<div class="form-group">
 			  <input type="text" name="name" id="name" required oninput="updatePreview()" />
 			  <label for="name">Your Name</label>
@@ -40,11 +46,8 @@
 			  <textarea   name="product" id="product" rows="4" readonly style="width:100%;padding:10px;border-radius:8px;" oninput="updatePreview()" ></textarea>
 			  <label for="product">Product Details</label>
 			</div>
-			<!--<div class="form-group">
-			  <input type="text" name="price" id="price" required oninput="updatePreview()" />
-			  <label for="product">Total Price</label>
-			</div>
 			
+			<!--
 			<div class="form-group">
 			
 q			<input type="number" name="quantity" id="quantity" min="1" required oninput="updatePreview()" />
@@ -58,7 +61,7 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
 			  <textarea name="message" id="message" rows="3" oninput="updatePreview()"></textarea>
 			  <label for="message">Special Instructions</label>
 			</div>
-			  <div class="price-summary" >
+			<div class="price-summary" >
 			  <p>Subtotal: <span id="subtotal">0.00</span></p>
 			  <p>Discount: -<span id="discount">0.00</span></p>
 			  <p><strong>Total: <span type="text" name="price" id="price" required oninput="updatePreview()">0.00</span></strong></p>
@@ -69,12 +72,13 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
 			  <label for="offerCode" class="promo-label">Have an offer code?</label>
 			  <div class="promo-input-group">
 				  <input type="text" id="offerCode"  placeholder="Enter code" />
-				  <button type="button" onclick="applyOffer()">Apply</button>
+				  <button type="button" id="offerCode-btn" class="offerCode-btn" onclick="applyOffer()">Apply</button>
 			  </div>
 			  <p id="offerMessage"  class="promo-message"></p>
 			</div>
 			<button type="payment" class="payment-btn" id="payment-btn">Payment</button>
 			<div class="order-summary" id="orderSummary"></div>
+			
 		  </form>
 		</div>
 	  </div>
@@ -106,8 +110,9 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
       return;
     }
 
-  //const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100; // in paise
-  const priceToCharge = parseFloat(localStorage.getItem("finalPrice") || 0)* 100; 
+    //onst totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100; // in paise
+	const priceToCharge = parseFloat(localStorage.getItem("finalPrice") || 0)* 100; 
+
     const options = {
       key: "rzp_live_80JuM6XhEIRwTU", // Replace with your Razorpay Key ID
       amount: priceToCharge,
@@ -116,7 +121,7 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
       description: "Order Payment",
       image: "https://your-logo-url.com/logo.png", // Optional logo
       handler: function (response) {
-		submitForm();
+		//submitForm();
 		Swal.fire({
 				  title: '🎉 Payment Successful!',
 				  html: `<p>Your payment was completed successfully.</p>
