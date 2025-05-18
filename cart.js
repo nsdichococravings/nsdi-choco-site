@@ -103,7 +103,7 @@ function addToCart(product) {
 	  });
   saveCart(cart);
   updateCartSummary();
-	 
+  updateCheckoutButtonVisibility();
 }
 
 // Remove item from the cart
@@ -131,9 +131,10 @@ function removeFromCart(productId) {
     return item;
   }).filter(item => item.quantity > 0); 
   
-
+ 
   saveCart(updatedCart);
   updateCartSummary();
+  updateCheckoutButtonVisibility();
  }
 
 // Update the cart summary (e.g., total items count and total price)
@@ -155,6 +156,7 @@ function updateCartSummary() {
   // Update total price and items on the cart page
   document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
   document.getElementById('price').textContent = totalPrice.toFixed(2);
+
   
 }
 
@@ -176,4 +178,16 @@ window.location.href = "orderForm.html";
 
 function clearPriceOnCartChange() {
   localStorage.removeItem("finalPrice");
+}
+
+function updateCheckoutButtonVisibility() {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const checkoutBtn = document.getElementById("proceed-checkout-btn");
+
+   // ✅ If empty and not already reloaded
+  if (cart.length === 0) {
+	checkoutBtn.style.display = "none";
+  } else {
+    checkoutBtn.style.display = "inline-block";
+  }
 }
