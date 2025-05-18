@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <!-- Meta Description -->
+	<!-- Meta Keywords (optional, not used much by Google anymore) -->
+<meta name="keywords" content="Brwonie,Dessert,Healthy Brownie,Premium Brownie,Rich in taste,Dessert, Delight Dessert,Homemade brownie,fudgy brownie,Couverture,Belgium,Begian Chocolate,Chocolate">
+<meta name="description" content="we’re passionate about baking brownies that are both indulgent and guilt-free. 
+	  We use only premium, locally sourced ingredients—free from artificial preservatives and additives">
+<meta property="og:type" content="https://nsdichococravings.netlify.app/" />
   <title>Cart – NSDI Choco Cravings</title>
   <link rel="stylesheet" href="cart.css" />
 </head>
 <body class="cart-page">
   <header class="header">
     <h1>🛒</h1><p class="subTittle">Happy to serve fresh..!</p>
-	  <a href="index.html" class="back-home-btn">
+	<a href="index.html" class="back-home-btn">
 	  <svg xmlns="http://www.w3.org/2000/svg" class="home-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
 		  d="M3 10l9-7 9 7v8a2 2 0 01-2 2h-4a2 2 0 01-2-2v-4H9v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-8z" />
@@ -25,7 +31,7 @@
     <div class="total-price">
       <p style ="color:black">Total: ₹<span id="totalPrice">0</span></p>
     </div>
-	    <button onclick="proceedToCheckout()" class="proceed-checkout-btn">Proceed to Checkout</button>
+	    <button onclick="proceedToCheckout()" class="proceed-checkout-btn" id="proceed-checkout-btn">Proceed to Checkout</button>
   </div>
 </main>
 
@@ -34,11 +40,11 @@
   function loadCartItems() {
     const cart = getCart();
     const cartItemsContainer = document.getElementById('cartItems');
-    
-    cartItemsContainer.innerHTML = ''; // Clear existing cart items
+	cartItemsContainer.innerHTML = ''; // Clear existing cart items
     
     if (cart.length === 0) {
       cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+	updateCheckoutButtonVisibility();
     } else {
       cart.forEach((item, index) => {
         const cartItemDiv = document.createElement('div');
@@ -58,6 +64,7 @@
 	     `;
         cartItemsContainer.appendChild(cartItemDiv);
       });
+	  updateCheckoutButtonVisibility();
     }
     
     // Update the cart summary
