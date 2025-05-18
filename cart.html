@@ -1,193 +1,79 @@
-const cartItemsContainer = document.getElementById('cartItems');
-const totalPriceElement = document.getElementById('totalPrice');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <!-- Meta Description -->
+	<!-- Meta Keywords (optional, not used much by Google anymore) -->
+<meta name="keywords" content="Brwonie,Dessert,Healthy Brownie,Premium Brownie,Rich in taste,Dessert, Delight Dessert,Homemade brownie,fudgy brownie,Couverture,Belgium,Begian Chocolate,Chocolate">
+<meta name="description" content="we’re passionate about baking brownies that are both indulgent and guilt-free. 
+	  We use only premium, locally sourced ingredients—free from artificial preservatives and additives">
+<meta property="og:type" content="https://nsdichococravings.netlify.app/" />
+  <title>Cart – NSDI Choco Cravings</title>
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body class="cart-page">
+  <header class="header">
+    <h1>🛒</h1><p class="subTittle">Happy to serve fresh..!</p>
+	<a href="index.html" class="back-home-btn">
+	  <svg xmlns="http://www.w3.org/2000/svg" class="home-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+		  d="M3 10l9-7 9 7v8a2 2 0 01-2 2h-4a2 2 0 01-2-2v-4H9v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-8z" />
+	  </svg>
+	  Back to Home
+	</a>
+  </header>
 
-function renderCart() {
-	
-  const cartItems = getCart();
-  const cartContainer = document.getElementById('cart-items');	
-  cartItemsContainer.innerHTML = '';
-  let total = 0;
+  <main>
+  <div class="cartTittle">Your Cart</div>
+  <div id="cartItems"></div> <!-- Cart items will be dynamically inserted here -->
+  <div class="cart-summary">
+    <div class="total-price">
+      <p style ="color:black">Total: ₹<span id="totalPrice">0</span></p>
+    </div>
+	    <button onclick="proceedToCheckout()" class="proceed-checkout-btn" id="proceed-checkout-btn">Proceed to Checkout</button>
+  </div>
+</main>
 
-  cartData.forEach((item, index) => {
-    const itemTotal = item.price * item.qty;
-    total += itemTotal;
-
-    const cartItem = document.createElement('div');
-    cartItem.className = 'cart-item';
-	cartItem.id = 'cart-item-id';
-	cartItem.setAttribute('data-item-id', item.id)
-    cartItem.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" />
-      <div class="cart-item-details">
-        <div class="cart-item-title">${item.name}</div>
-        <div class="cart-item-price">₹${item.price} each</div>
-      </div>
-      <div class="cart-item-qty">
-        <input type="number" value="${item.quantity}" min="1" data-index="${index}" />
-      </div>
-      <button class="remove-btn" data-index="${index}">Remove</button>
-    `;
-
-    cartItemsContainer.appendChild(cartItem);
-  });
-
-  totalPriceElement.textContent = total.toFixed(2);;
-
-}
-
-cartItemsContainer.addEventListener('change', (e) => {
-  if (e.target.tagName === 'INPUT') {
-	//const index = e.target.dataset.index;
-	const itemId = parseInt(e.target.dataset.index); // This is actually item.id
-	const cart = getCart();
-	const itemToUpdate = cart.find(item => item.id === itemId);
-	if (itemToUpdate) {
-	  const newQty = parseInt(e.target.value) || 1;
-      itemToUpdate.quantity = newQty;
-      saveCart(cart);
-     // renderCart();
-      updateCartSummary();
+<script>
+  // Dynamically load cart items from localStorage
+  function loadCartItems() {
+    const cart = getCart();
+    const cartItemsContainer = document.getElementById('cartItems');
+	cartItemsContainer.innerHTML = ''; // Clear existing cart items
+    
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+	updateCheckoutButtonVisibility();
+    } else {
+      cart.forEach((item, index) => {
+        const cartItemDiv = document.createElement('div');
+        cartItemDiv.classList.add('cart-item');
+		cartItemDiv.setAttribute('data-item-id', item.id)
+        cartItemDiv.innerHTML = `
+		<img src="${item.image} "alt="${item.name}" />
+		 <div class="cart-item-details">
+          <div class="cart-item-title">${item.name}</div>
+		  <div class="cart-item-price">₹${item.price} each</div>
+		  <!--<div class="cart-item-title">${item.name} - ₹${item.price} x ${item.quantity}</div> -->
+		  <div class="cart-item-qty">
+			  <input type="number" min="1" data-index="${item.id}" value="${item.quantity}"  />
+		  </div>
+		  </div>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})" data-index="${item.id}" >Remove</button>
+	     `;
+        cartItemsContainer.appendChild(cartItemDiv);
+      });
+	  updateCheckoutButtonVisibility();
     }
+    
+    // Update the cart summary
+    updateCartSummary();
   }
-});
-/*
-cartItemsContainer.addEventListener('click', (e) => {
-  if (e.target.classList.contains('remove-btn')) {
-    const index = e.target.dataset.index;
-    cartData.splice(index, 1);
-    renderCart();
-  }
-});*/
 
-document.getElementById('checkoutBtn').addEventListener('click', () => {
-  alert('Redirecting to payment... (hook this into Razorpay later)');
-});
-
-// cart.js
-
-// Helper function to get the current cart from localStorage
-function getCart() {
-  let cart = JSON.parse(localStorage.getItem('cart'));
-  return cart ? cart : [];
-}
-
-// Helper function to save the cart to localStorage
-function saveCart(cart) {
-  localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Add item to the cart
-function addToCart(product) {
-  clearPriceOnCartChange();	
-  console.log('Product added to cart:', product);
-  const cart = getCart();
-  const existingProductIndex = cart.findIndex(item => item.id === product.id);
-  
-  if (existingProductIndex === -1) {
-    cart.push(product);
-  } else {
-    cart[existingProductIndex].quantity += 1; // Increase quantity if the item is already in the cart
-  }
-	Swal.fire({
-		toast: true,
-		position: 'center',
-		icon: 'success',
-		title: 'Added to cart',
-		showConfirmButton: false,
-		timer: 2000,
-		background: '#2c003e',
-		color: '#FFD700',
-		customClass: {
-		  popup: 'swal-cart-toast'
-		}
-	  });
-  saveCart(cart);
-  updateCartSummary();
-  updateCheckoutButtonVisibility();
-}
-
-// Remove item from the cart
-function removeFromCart(productId) {
-  clearPriceOnCartChange();	
-  let cart = getCart();
-  
-     // Visually hide the element
-  const itemElement = document.querySelector(`[data-item-id="${productId}"]`);
-  if (itemElement) {
-    itemElement.style.display = 'none'; // 👈 Hide the item from UI
-  }
-  
-  
-  const updatedCart = cart.map(item => {
-    if (item.id === productId) {
-      return {
-        ...item,
-        quantity: 0,
-        price: 0,
-        name: '',
-        image: ''
-      };
-    }
-    return item;
-  }).filter(item => item.quantity > 0); 
-  
- 
-  saveCart(updatedCart);
-  updateCartSummary();
-  updateCheckoutButtonVisibility();
- }
-
-// Update the cart summary (e.g., total items count and total price)
-function updateCartSummary() {
-  const cart = getCart();
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-
-  // Update cart items count on the homepage (index.html)
-	const cartItemCountElement = document.getElementById('cartItemCount');
-
-	// Check if the element exists (not null)
-	if (cartItemCountElement !== null) {
-	  cartItemCountElement.textContent = totalItems;
-	} else {
-	  console.warn('Cart item count element not found on this page.');
-	}
-
-  // Update total price and items on the cart page
-  document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
-  document.getElementById('price').textContent = totalPrice.toFixed(2);
-
-  
-}
-
-// Initialize cart summary on page load
-function initializeCart() {
-  updateCartSummary();
-}
-
-// Initialize cart
-document.addEventListener('DOMContentLoaded', loadCartItems);
-document.addEventListener('DOMContentLoaded', () => {
-  renderCart(); 
-  initializeCart(); 
-});
-function proceedToCheckout() {
-clearPriceOnCartChange();
-window.location.href = "orderForm.html";
-}
-
-function clearPriceOnCartChange() {
-  localStorage.removeItem("finalPrice");
-}
-
-function updateCheckoutButtonVisibility() {
-  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  const checkoutBtn = document.getElementById("proceed-checkout-btn");
-
-   // ✅ If empty and not already reloaded
-  if (cart.length === 0) {
-	checkoutBtn.style.display = "none";
-  } else {
-    checkoutBtn.style.display = "inline-block";
-  }
-}
+  // Call loadCartItems when the page loads
+  window.onload = loadCartItems;
+</script>
+  <script src="cart.js"></script>
+</body>
+</html>
