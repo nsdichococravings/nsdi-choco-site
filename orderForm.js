@@ -116,6 +116,7 @@ function applyOffer() {
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
   let discount = 0;
   let brownieTotal = 0;
+  let discountValue =0;
 
   // Check if cart contains a Brownie item
   cart.forEach(item => {
@@ -127,7 +128,7 @@ function applyOffer() {
   localStorage.setItem("finalPrice", finalPrice.toFixed(2));
   if (offers.hasOwnProperty(code) && brownieTotal > 0) {
     discount = offers[code];
-    const discountValue = (brownieTotal * discount) / 100;
+    discountValue = (brownieTotal * discount) / 100;
 
     document.getElementById("offerMessage").innerText = `Code applied: ${discount}% off on Brownies!`;
     document.getElementById("discount").innerText = discountValue.toFixed(2);
