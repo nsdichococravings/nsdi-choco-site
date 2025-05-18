@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://nsdichococravings.netlify.app//sitemap.xml
