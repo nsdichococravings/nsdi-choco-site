@@ -110,7 +110,7 @@ q			<input type="number" name="quantity" id="quantity" min="1" required oninput=
   const priceToCharge = parseFloat(localStorage.getItem("finalPrice") || 0)* 100; 
     const options = {
       key: "rzp_live_80JuM6XhEIRwTU", // Replace with your Razorpay Key ID
-      amount: totalAmount,
+      amount: priceToCharge,
       currency: "INR",
       name: "NSDI Choco Cravings",
       description: "Order Payment",
