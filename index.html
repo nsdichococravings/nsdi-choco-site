@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!-- Meta Description -->
 	<!-- Meta Keywords (optional, not used much by Google anymore) -->
-<meta name="keywords" content="Brownie delivery in Salem,Handmade brownies in Salem,Best brownies near me,Brwonie,Dessert,Healthy Brownie,Premium Brownie,Rich in taste,Dessert, Delight Dessert,Homemade brownie,fudgy brownie,Couverture,Belgium,Begian Chocolate,Chocolate">
+<meta name="keywords" content="Brwonie,Dessert,Healthy Brownie,Premium Brownie,Rich in taste,Dessert, Delight Dessert,Homemade brownie,fudgy brownie,Couverture,Belgium,Begian Chocolate,Chocolate">
 <meta name="description" content="we’re passionate about baking brownies that are both indulgent and guilt-free. 
 	  We use only premium, locally sourced ingredients—free from artificial preservatives and additives">
 	  <a href="https://instagram.com/nsdi.chococravings" target="_blank" title="Instagram">
@@ -26,8 +26,6 @@
       console.log("Google Pay is loaded.");
     }
 
-  // Append the button to the container
-  document.getElementById('googlePayButtonContainer').appendChild(button);
  
  function onGooglePayButtonClicked() {
       const paymentDataRequest = {
@@ -69,6 +67,10 @@
   
   </script>
    <script src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+ <!-- Lightbox2 CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
+
      <script src="cart.js"></script>
 	 <script src="orderForm.js"></script>
   <title>NSDI Choco Cravings</title>
@@ -896,6 +898,86 @@ footer.footer {
   margin: 0;
   font-size: 24px;
 }
+.premium-testimonials {
+  background: #fffaf6;
+  padding: 80px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+.testimonial-heading {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+  color: #2e2e2e;
+  position: relative;
+}
+
+.testimonial-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.testimonial-card {
+  background: #ffffff;
+  max-width: 280px;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+}
+.testimonial-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.testimonial-img:hover {
+  transform: scale(1.03);
+}
+
+
+.quote-icon {
+  font-size: 4rem;
+  color: #ffb347;
+  position: absolute;
+  top: -20px;
+  left: 20px;
+}
+
+.testimonial-author {
+  font-size: 0.85rem;
+  color: #777;
+  font-weight: 500;
+}
+.testimonial-author {
+  margin-top: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+}
+.lightbox-link {
+  display: inline-block;
+  transition: transform 0.2s;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lightbox-link:hover {
+  transform: scale(1.03);
+}
+
+
 
 /* Mobile Responsive */
 @media (max-width: 480px) {
@@ -929,6 +1011,49 @@ right: 20px;
 padding: 14px 20px;
 font-size: 14px;
 }
+}
+@media (max-width: 600px) {
+  .testimonial-card {
+    max-width: 90%;
+  }
+  .testimonial-img {
+    height: 130px;
+  }
+}
+
+.testimonial-stars {
+  margin: 10px 0;
+}
+
+.star {
+  color: #FFD700; /* Gold */
+  font-size: 1.2rem;
+  margin-right: 3px;
+}
+/* Gold Star Styling */
+.star {
+  color: #FFD700;
+  font-size: 1.2rem;
+  margin-right: 3px;
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: starPop 0.4s ease forwards;
+}
+
+/* Animate each star with slight delay */
+.testimonial-stars .star:nth-child(1) { animation-delay: 0.1s; }
+.testimonial-stars .star:nth-child(2) { animation-delay: 0.2s; }
+.testimonial-stars .star:nth-child(3) { animation-delay: 0.3s; }
+.testimonial-stars .star:nth-child(4) { animation-delay: 0.4s; }
+.testimonial-stars .star:nth-child(5) { animation-delay: 0.5s; }
+
+/* Star Animation */
+@keyframes starPop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 
@@ -1266,6 +1391,109 @@ font-size: 14px;
     <!-- Add more as needed -->
   </div>
 </section>
+<section class="premium-testimonials">
+  <h2 class="testimonial-heading">Customer Praise & Testimonials 💬</h2>
+  <div class="testimonial-grid">
+
+	 <div class="testimonial-card">
+	  <p class="testimonial-text">"Omg, superah irukku Sakthi,brillant work,especially that women with heart. Nandrigal for the hearttouching work!!:) " </p>
+	   <h4 class="testimonial-author"> Rajeshkumar A, IT Professional </h4>
+	</div>
+
+	<div class="testimonial-card">
+	  <p class="testimonial-text">"It was absolutely delicious and beautiful presentation! especially perfect packing.Homemade - So everone loved it."</p>
+	   <h4 class="testimonial-author"> Gomathi Rajasekar, Teaching Professional </h4>
+	</div>
+
+	<div class="testimonial-card">
+	  <p class="testimonial-text">"Amazing brownies!! Taste was very good:) Mykids loved it:) presentation and packing was top notch. it was beautifully sliced and packed. Definitely must try for any chocolate lovers, Thank you for the delicious brownie:):)"</p>
+	   <h4 class="testimonial-author"> Ramalingam A, IT Professional </h4>
+	</div>
+
+	<!-- Optional Screenshot Bubble -->
+	
+	<div class="testimonial-card">
+	  <a href="/images/R1.JPG" class="lightbox-link" target="_blank" data-lightbox="testimonials">
+		<img src="/images/R1.JPG" alt="WhatsApp Review" class="testimonial-img">
+	  </a>
+	   <div class="testimonial-stars">
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+	  </div>
+	   <h4 class="testimonial-author"> Screenshot from WhatsApp</h4>
+	</div>
+	<div class="testimonial-card">
+	<a href="/images/R6.JPG" class="lightbox-link" target="_blank" data-lightbox="testimonials">
+	  <img src="/images/R6.JPG" alt="WhatsApp Review" class="testimonial-img">
+	   </a>
+	    <div class="testimonial-stars">
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+	  </div>
+	  <h4 class="testimonial-author"> Screenshot from WhatsApp</h4>
+	</div>
+	<div class="testimonial-card">
+	<a href="/images/R2.JPG" class="lightbox-link" target="_blank" data-lightbox="testimonials">
+	  <img src="/images/R2.JPG" alt="WhatsApp Review" class="testimonial-img">
+	   </a>
+	    <div class="testimonial-stars">
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+	  </div>
+	   <h4 class="testimonial-author"> Screenshot from WhatsApp</h4>
+	</div>
+	
+	<div class="testimonial-card">
+	<a href="/images/R5.JPG" class="lightbox-link" target="_blank" data-lightbox="testimonials">
+	  <img src="/images/R5.JPG" alt="WhatsApp Review" class="testimonial-img">
+	   </a>
+	    <div class="testimonial-stars">
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+	  </div>
+	  <h4 class="testimonial-author"> Screenshot from WhatsApp</h4>
+	</div>
+	
+	<div class="testimonial-card">
+	<a href="/images/R4.JPG" class="lightbox-link" target="_blank" data-lightbox="testimonials">
+	  <img src="/images/R4.JPG" alt="WhatsApp Review" class="testimonial-img">
+	   </a>
+	    <div class="testimonial-stars">
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+	  </div>
+	   <h4 class="testimonial-author"> Screenshot from WhatsApp</h4>
+	</div>
+	<div class="testimonial-card">
+	<a href="/images/R3.JPG" class="lightbox-link" target="_blank" data-lightbox="testimonials">
+	  <img src="/images/R3.JPG" alt="WhatsApp Review" class="testimonial-img">
+	   </a>
+	    <div class="testimonial-stars">
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+		<span class="star">&#9733;</span>
+	  </div>
+	   <h4 class="testimonial-author"> Screenshot from WhatsApp</h4>
+	</div>
+  </div>
+</section>
 
 	<!-- Stylish Footer -->
 	<footer class="footer">
@@ -1349,5 +1577,8 @@ font-size: 14px;
   document.addEventListener('DOMContentLoaded', updateCartSummary);
   
 </script>
+<!-- Lightbox2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
 </body>
 </html>
