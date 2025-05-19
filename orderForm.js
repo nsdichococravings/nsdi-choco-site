@@ -1,4 +1,4 @@
- const scriptURL = "https://script.google.com/macros/s/AKfycbzESNKwIUQefWW2njLAwxXxfJZVbJnfGYoXEw3qW9YWzS1qZfaLL7QH_C-u8KSAPZeo/exec"; // replace with your actual URL
+ const scriptURL = "https://script.google.com/macros/s/AKfycbxIqJ3rLieihWY1wUb41KDjvub7lNkCy7hqM0DytPCRqjxTsDMDeT8X1CgDNwt8bilZ/exec"; // replace with your actual URL
   const form = document.getElementById("orderForm");
   const modal = document.getElementById("successModal");
   const orderFormTittle = document.getElementById("orderFormTittle");
